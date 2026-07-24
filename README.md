@@ -31,7 +31,7 @@ It is for people who put out work under their own name and want it to look and s
 - It does not invent your purpose or positioning. It helps you articulate what you already do, not manufacture an identity you do not have.
 - It does not do corporate identity. This is one person's brand, not a company's.
 - It does not produce photography or illustration, nor run your social accounts or content plan. It is the visual and verbal system, not the distribution strategy.
-- It does not itself produce a Word .docx. If you need an editable document, `wordkit` is a separate library for that; the skill delivers the HTML and its PDF.
+- It does not itself produce a Word .docx. An editable document is the job of `wordkit`, a separate library planned as its own project; the skill delivers the HTML and its PDF.
 - It does not replace a designer when the job goes beyond a documented system.
 
 ## 3. How it works
@@ -108,4 +108,4 @@ Released under the **MIT** license. Copyright (c) 2026 Carlos Padilla Bravo. You
 
 Author: **Carlos Padilla Bravo**
 
-`wordkit` is a separate library, in its own repository, for developers who want a layer that generates a Word .docx. This skill does not use or include it: it delivers the manual as HTML, which prints the formal paginated PDF on any platform. Reach for `wordkit` only if you specifically need an editable .docx.
+`wordkit` is a separate library, planned as its own project and not yet published, for developers who want a layer that generates a Word .docx. This skill does not use or include it: it delivers the manual as HTML, which prints the formal paginated PDF on any platform. `wordkit` would only matter if you specifically need an editable .docx.

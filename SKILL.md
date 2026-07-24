@@ -79,7 +79,7 @@ With the foundation closed, now expressing it. The visual translates what came b
 
 1. **Assemble the manual as a self-contained HTML file:** a single page, everything embedded, no external dependencies. Start from the reference scaffold in [`assets/plantilla.html`](assets/plantilla.html), which carries the proven mechanics (the `@page` print boxes, the document structure, one worked example of each block) with no palette or content. Fill its `{{...}}` placeholders and `:root` tokens with the decisions made, embed the chosen fonts as base64, and include a light and a dark version. Do not rebuild the print CSS from scratch: pagination is native, so no pagination library is needed. Printed from a Chromium browser (Chrome or Edge) with "Background graphics" on, the file comes out paginated, with page numbers, header and footer. On screen it stays continuous.
 2. **Close with a token sheet:** colors by role, type scale, families. It is the contract other tools can read.
-3. **For an editable `.docx`,** point to `wordkit`, a separate library in its own repository that generates Word from the same decisions. It is optional and not part of this skill; the HTML above already prints the formal paginated PDF on any platform.
+3. **For an editable `.docx`,** there is `wordkit`, a separate library planned as its own project (not yet published) that generates Word from the same decisions. It is optional and not part of this skill; the HTML above already prints the formal paginated PDF on any platform.
 4. **Hand over the loose tokens too,** to reuse the identity on other pieces or to turn the manual into a skill that other skills consult.
 
 ## Structure of the delivered manual
@@ -107,4 +107,4 @@ The cover, the contents, the introduction and the appendices are fixed. Of the c
 - It does not design the logo or any graphic mark. It documents one that already exists.
 - It does not invent the person's purpose or positioning. It articulates them from what the person already does.
 - It does not do corporate identity. It is one person's brand.
-- It does not itself produce the `.docx`; that path lives in the separate `wordkit` library.
+- It does not itself produce the `.docx`; that path belongs to `wordkit`, a separate library planned as its own project.
