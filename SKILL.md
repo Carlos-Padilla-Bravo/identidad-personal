@@ -39,9 +39,9 @@ The skill enforces these in the manual it produces.
 - **Close the direction before the detail.** The color direction is agreed before writing a single hex value; the type character, before choosing a family.
 - **Ration the signal color.** An accent that marks, not one that decorates. Reference proportion: 90% neutrals, 8% primary, 2% signal.
 - **Cap the type styles.** A small number (reference: nine). A new style on a whim breaks the system.
-- **Verify contrast with a number**, per WCAG 2.1, not by eye. Do not rest information on color alone.
-- **Freely licensed type by default,** so it can be embedded and reused at no cost or permission.
-- **The logo is a decision point, not a rule.** Ask whether the mark is a logo or a typographic name signature, and branch. The skill does not design the logo, it only documents one that already exists.
+- **Verify contrast with a number**, per WCAG 2.1, not by eye. Do not rely on color alone.
+- **Freely licensed type by default,** so it can be embedded and reused at no cost and without permission.
+- **The logo is a decision point, not a rule.** Ask whether the mark is a logo or a typographic name signature, and branch. The skill does not design the logo; it only documents one that already exists.
 
 ## The path
 
@@ -58,7 +58,7 @@ Draw out, in this order, closing each point before moving on. This replaces any 
 
 ### Phase B. Visual system: how it looks
 
-With the foundation closed, and expressing it. The visual translates what came before, it does not precede it.
+With the foundation closed, now expressing it. The visual translates what came before; it does not precede it.
 
 1. **Color.** Direction first: what feeling it conveys, what it avoids. Then the values: a dominant neutral, a primary, a rationed signal color, and the proportion between them. Verify the contrast of every pair that carries text.
 2. **Type.** Character first; then a freely licensed family; hierarchy with a cap on styles; a scale built on a fixed ratio.
@@ -69,11 +69,11 @@ With the foundation closed, and expressing it. The visual translates what came b
 
 - **One column measure.** Paragraphs, tables, figures, notes and captions share exactly the same width, justified left and right. No paragraphs narrower than the tables; that ragged right edge shows through the whole manual and is the first thing that gives away poor formatting.
 - **All reading text justified,** body, leads, notes and captions, with hyphenation on (`hyphens: auto` and the correct `lang`). Hyphenation removes the gaps justification leaves.
-- **Numbering in the structuring color, not the signal.** Section, subsection and index numbers go in the primary. Using the signal to number contradicts rationing it: the signal signals, it does not order, and it stays for table and figure labels.
-- **Numbered subsections** (3.1, 3.2…) and **the index unfolds the subsections** indented, each with its page number. Index with no dot leader: title on the left, number on the right. CSS dotted borders print unevenly.
-- **Cover as its own page,** separate from the index; on screen, with a rule and air, not glued to the index.
+- **Numbering in the structuring color, not the signal.** Section, subsection and table-of-contents numbers go in the primary. Using the signal to number contradicts rationing it: the signal signals; it does not order, and it stays for table and figure labels.
+- **Numbered subsections** (3.1, 3.2…) and **the table of contents unfolds the subsections** indented, each with its page number. Contents with no dot leader: title on the left, number on the right. CSS dotted borders print unevenly.
+- **Cover as its own page,** separate from the contents; on screen, with a rule and air, not glued to the contents.
 - **Figure title at the foot, table title above.** The "Figure N · …" label always sits at the base of the figure; the "Table N · …" label above the table. Same signal marker on both, different position.
-- **A dividing rule below the header and above the footer** on interior pages, not on the cover. Draw it with `border-bottom` and `border-top` on the `@page` margin boxes; include the center boxes with a space as content so the line runs continuous across the width, and drop them on `@page:first`.
+- **A dividing rule below the header and above the footer** on interior pages, not on the cover. Draw it with `border-bottom` and `border-top` on the `@page` margin boxes; include the center boxes with a space as content so the line runs unbroken across the width, and drop them on `@page:first`.
 
 ### Phase C. The deliverable
 
@@ -100,7 +100,7 @@ And the numbered sections:
 9. Usage recommendations
 10. Appendices: technical sheet of the system (tokens) and provenance of the typefaces.
 
-The cover, the index, the introduction and the appendices are fixed. Of the content sections, drop the ones that do not add to a given case. The structure guides, it does not compel.
+The cover, the contents, the introduction and the appendices are fixed. Of the content sections, drop the ones that do not add to a given case. The structure guides; it does not compel.
 
 ## What the skill does not do
 

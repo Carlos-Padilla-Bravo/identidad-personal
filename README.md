@@ -2,7 +2,7 @@
 
 # Identidad Personal
 
-A Claude Code skill that guides you, through questions, to build your own personal brand identity manual, and hands you the finished manual.
+A Claude Code skill that guides you, through questions, to build your own personal brand identity manual, and hands it to you finished.
 
 > Works in Spanish and English. The skill detects your language or asks at the start.
 
@@ -26,7 +26,7 @@ It is for people who put out work under their own name and want it to look and s
 
 **What it does not do**
 
-- It does not design your logo or any graphic mark. It documents one that already exists, it does not draw it.
+- It does not design your logo or any graphic mark. It documents one that already exists; it does not draw it.
 - It does not fill a template with your data. It is a method, not a form. Without your decisions, you get a correct manual with no character.
 - It does not invent your purpose or positioning. It helps you articulate what you already do, not manufacture an identity you do not have.
 - It does not do corporate identity. This is one person's brand, not a company's.
@@ -44,7 +44,7 @@ The path has three moments:
 
 **Foundation: who you are.** First, what is not seen. The skill draws out, one decision at a time, your essence (what you do in one sentence), your territory (which areas you work in and what stays out), your purpose, your personality (marked with opposing examples: closer or more reserved, more technical or more approachable), your audiences and your tone. This steers everything visual: the system translates who you are, not the other way around.
 
-**Visual system: how it looks.** With the foundation closed, the skill builds the color (direction first, then the values: a dominant neutral, a primary and a rationed signal color, with contrast verified by number), the type (character first, then a freely licensed family and a hierarchy with a cap on styles), your signature or your logo depending on what you have, and the layout. At the points that are costly to reverse, color, type and signature, it stops to consult you before setting anything.
+**Visual system: how it looks.** With the foundation closed, the skill builds the color (direction first, then the values: a dominant neutral, a primary and a rationed signal color, with contrast verified by number), the type (character first, then a freely licensed family and a hierarchy with a cap on styles), your signature or your logo depending on what you have, and the layout. At the points that are costly to reverse (color, type and signature), it stops to consult you before setting anything.
 
 **The deliverable.** The skill assembles the manual as a single-page, self-contained HTML file, with the fonts embedded and no external dependencies, in a light and a dark version. On screen it reads as one flow; printed to PDF from a Chromium browser it comes out paginated, with page numbers, header and footer. It closes with the token sheet (colors by role, type scale, families) so you can reuse the identity on other pieces.
 
