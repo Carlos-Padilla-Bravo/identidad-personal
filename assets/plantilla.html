@@ -1,0 +1,444 @@
+<!doctype html>
+<!--
+  REFERENCE TEMPLATE · Identidad Personal skill
+  ============================================================================
+  This file is the mechanical scaffold, NOT a design. It carries only the parts
+  that are identical in every manual and easy to get wrong: the print @page
+  boxes (page numbers, running header/footer, hairline rules), the document
+  structure, and one worked example of each content block. It does NOT carry a
+  palette, a typeface choice, or any content: those are decisions the skill
+  makes with the person, and they replace the {{PLACEHOLDERS}} below.
+
+  How the skill uses it:
+    1. Fill the :root tokens with the palette decided in Fase B (keep the role
+       names; only swap the hex). Do the same for the dark block.
+    2. Replace the @font-face block with the chosen OFL families, embedded as
+       base64 data: URIs so the file stays self-contained. Point --serif /
+       --sans / --mono at them.
+    3. Replace every {{...}} placeholder and the running-header strings.
+    4. Keep the print CSS as is unless a decision requires otherwise. It is the
+       proven part.
+
+  Pagination is native: Chromium renders the @page margin boxes on its own, so
+  no pagination library is needed. Print condition: a Chromium browser (Chrome
+  or Edge) with "Background graphics" enabled, so the surface colors survive
+  into the PDF. On screen the document is one continuous flow.
+  ============================================================================
+-->
+<html lang="{{LANG}}">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{NAME}} · {{MANUAL TITLE}}</title>
+<style>
+
+/* --- FONTS ---------------------------------------------------------------
+   Replace with the chosen OFL families, embedded as base64 so the file has no
+   external dependencies. One @font-face per weight/style actually used.
+     @font-face{ font-family:'YourSerif'; font-weight:600; font-display:swap;
+       src:url(data:font/woff2;base64,....) format('woff2'); }
+   Until embedded, the stack below falls back to system fonts.
+-------------------------------------------------------------------------- */
+
+:root{
+  /* PALETTE — replace every hex with the decided values. Roles stay. */
+  --bg:#FFFFFF;        /* page background (the "paper") */
+  --surf:#F4F2EF;      /* surface: notes, cards, swatches */
+  --fg:#1A1A1A;        /* body text */
+  --fg2:#6B6B6B;       /* secondary text: leads, captions */
+  --pri:#3A3A3A;       /* primary: section numbers, headings, links, structure */
+  --pri2:#3A3A3A;      /* primary, darker variant for light backgrounds */
+  --sig:#8A8A8A;       /* signal: table/figure labels only. Rationed. */
+  --line:#E2E2E2;      /* hairline rules and borders */
+  /* TYPE — point these at the embedded families. */
+  --serif:Georgia,'Times New Roman',serif;   /* headings, signature */
+  --sans:system-ui,-apple-system,sans-serif;  /* body, tables, captions */
+  --mono:'Courier New',monospace;             /* figures, tokens */
+}
+:root[data-theme="dark"]{
+  --bg:#1B1B1B; --surf:#262626; --fg:#EDEDED; --fg2:#A8A8A8;
+  --pri:#BFBFBF; --pri2:#BFBFBF; --sig:#9A9A9A; --line:#343434;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#1B1B1B; --surf:#262626; --fg:#EDEDED; --fg2:#A8A8A8;
+    --pri:#BFBFBF; --pri2:#BFBFBF; --sig:#9A9A9A; --line:#343434;
+  }
+}
+
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0; background:var(--bg); color:var(--fg);
+  font-family:var(--sans); font-size:17px; line-height:1.6;
+  font-weight:400;
+}
+.hoja{max-width:720px; margin:0 auto; padding:48px 32px 96px}
+
+/* Styles 1 & 2: headings */
+h1.sec{
+  font-family:var(--serif); font-weight:600; font-size:2.1rem; line-height:1.15;
+  margin:0 0 .2em; color:var(--fg); letter-spacing:-.01em;
+}
+h1.sec .num{color:var(--pri2); font-variant-numeric:tabular-nums; margin-right:.5rem}
+h2.sub{
+  font-family:var(--sans); font-weight:700; font-size:1.15rem; line-height:1.3;
+  margin:2.2em 0 .6em; color:var(--pri2);
+}
+h2.sub .subnum{color:var(--pri2); margin-right:.5rem; font-variant-numeric:tabular-nums}
+/* Style 3: lead (ragged right, short measure) */
+.lead{font-size:1.2rem; line-height:1.5; color:var(--fg2); margin:.4em 0 1.6em;
+  text-align:justify; hyphens:auto; -webkit-hyphens:auto}
+/* Style 4: body (justified, hyphenated) */
+p{margin:0 0 1em; text-align:justify; hyphens:auto; -webkit-hyphens:auto}
+strong{font-weight:700}
+a{color:var(--pri2)}
+ul,ol{padding-left:1.3em}
+li{margin:.35em 0}
+.hoja ul li,.hoja > ol li{text-align:justify; hyphens:auto; -webkit-hyphens:auto}
+.indice li{text-align:left; hyphens:manual}
+
+/* Style 5: callout / note */
+.nota{
+  background:var(--surf); border-left:3px solid var(--sig);
+  padding:.9em 1.1em; margin:1.4em 0; font-size:.96rem; color:var(--fg2);
+  border-radius:0 4px 4px 0; text-align:justify; hyphens:auto; -webkit-hyphens:auto;
+}
+.nota strong{color:var(--fg)}
+
+/* Style 6: table / figure label */
+.etiqueta{
+  font-family:var(--sans); font-weight:700; font-size:.72rem; letter-spacing:.09em;
+  text-transform:uppercase; color:var(--sig); margin:2em 0 .5em;
+}
+.etiqueta.abajo{margin:.7em 0 .35em}  /* figure title: at the foot */
+.etiqueta.abajo + .pie{margin-top:0}  /* caption hugs the figure title */
+.pie{font-size:.82rem; color:var(--fg2); margin:.5em 0 1.6em; text-align:justify; hyphens:auto; -webkit-hyphens:auto}
+
+/* Style 7: tables (no vertical rules, thin horizontal rules) */
+table{
+  border-collapse:collapse; width:100%; max-width:100%; margin:.3em 0 .4em;
+  font-size:.9rem;
+}
+thead th{
+  text-align:left; font-family:var(--sans); font-weight:700; font-size:.74rem;
+  letter-spacing:.05em; text-transform:uppercase; color:var(--fg2);
+  border-bottom:1.5px solid var(--fg2); padding:.5em .7em;
+}
+td{border-bottom:1px solid var(--line); padding:.55em .7em; vertical-align:top}
+tbody tr:last-child td{border-bottom:1.5px solid var(--fg2)}
+/* Style 8: figure / token */
+.mono,td.mono,code{font-family:var(--mono); font-size:.82em}
+td.mono{white-space:nowrap}
+
+/* Figures composed in CSS */
+.fig{margin:1.7em 0 .4em}
+.barra{display:flex; height:34px; border-radius:5px; overflow:hidden; font-size:.72rem;
+  font-weight:700; color:#fff; max-width:100%}
+.barra span{display:flex; align-items:center; justify-content:center; white-space:nowrap}
+.leyenda{display:flex; gap:1.6em; flex-wrap:wrap; margin:.7em 0 0; font-size:.82rem; color:var(--fg2)}
+.leyenda span{display:flex; align-items:center; gap:.45em}
+.leyenda i{width:12px; height:12px; border-radius:3px; display:inline-block; flex:none}
+.swatches{display:grid; grid-template-columns:repeat(auto-fill,minmax(150px,1fr)); gap:12px}
+.sw{border:1px solid var(--line); border-radius:6px; overflow:hidden; background:var(--surf)}
+.sw .muestra{height:56px}
+.sw .txt{padding:.5em .6em}
+.sw .rol{font-weight:700; font-size:.82rem}
+.sw .hex{font-family:var(--mono); font-size:.74rem; color:var(--fg2)}
+.escala > div{border-bottom:1px solid var(--line); padding:.35em 0; display:flex; align-items:baseline; gap:1em}
+.escala .et{font-family:var(--mono); font-size:.7rem; color:var(--fg2); width:5.5em; flex:none}
+
+/* Name signature */
+.firma-demo{border:1px solid var(--line); border-radius:8px; padding:28px 32px; background:var(--surf);
+  display:inline-block; margin:1.4em 0 .4em}
+.firma-nom{font-family:var(--serif); font-weight:600; font-size:2rem; line-height:1; color:var(--fg)}
+.firma-rol{font-family:var(--sans); font-weight:700; font-size:.72rem; letter-spacing:.28em;
+  text-transform:uppercase; color:var(--sig); margin-top:.5em}
+
+/* Correct / incorrect use */
+.usos{display:grid; grid-template-columns:1fr 1fr; gap:16px; margin:1.7em 0 .4em}
+.uso{border:1px solid var(--line); border-radius:6px; padding:.9em 1em; font-size:.9rem}
+.uso .marca{font-weight:700; font-size:.74rem; letter-spacing:.05em; text-transform:uppercase; margin-bottom:.4em}
+.uso.si .marca{color:var(--pri2)} .uso.no .marca{color:var(--sig)}
+
+/* Cover */
+.portada{display:flex; flex-direction:column}
+.portada .nombre{font-family:var(--serif); font-weight:600; font-size:3.4rem; line-height:1; letter-spacing:-.015em}
+.portada .rol{font-family:var(--sans); font-weight:700; font-size:.86rem; letter-spacing:.32em;
+  text-transform:uppercase; color:var(--sig); margin:1.1em 0 0}
+.portada .subt{font-family:var(--serif); font-style:italic; font-weight:400; font-size:1.35rem;
+  color:var(--fg2); margin:2.4em 0 0}
+.portada .meta{padding-top:3em; font-size:.86rem; color:var(--fg2);
+  display:flex; gap:2.5em; flex-wrap:wrap; font-family:var(--mono)}
+.portada .meta b{color:var(--fg); font-weight:700; display:block; font-family:var(--sans); font-size:.7rem;
+  letter-spacing:.06em; text-transform:uppercase}
+.regla-color{height:6px; background:var(--pri); border-radius:3px; margin:1.6em 0; max-width:120px;
+  position:relative}
+.regla-color::after{content:""; position:absolute; right:0; top:0; height:6px; width:24px;
+  background:var(--sig); border-radius:0 3px 3px 0}
+
+/* Index */
+.indice{list-style:none; padding:0}
+.indice li{border-bottom:1px solid var(--line); padding:.5em 0; margin:0}
+.indice a{display:flex; align-items:baseline; gap:.55em; color:var(--fg); text-decoration:none}
+.indice .n{color:var(--pri2); font-family:var(--mono); font-size:.8rem; flex:none; width:2.2em}
+.indice .t{flex:0 1 auto}
+.indice a.sub{color:var(--fg2); font-size:.9rem; padding:.3em 0 0 2.75em}
+.indice a.sub .n{width:3em; font-size:.72rem}
+.indice .dots{flex:1 1 auto}   /* spacer, no dot leader (dotted rules print unevenly) */
+.indice .pg{font-family:var(--mono); font-size:.8rem; color:var(--fg2); flex:none}
+
+/* Theme toggle, screen only */
+.tema{position:fixed; top:14px; right:14px; z-index:9; font-family:var(--sans); font-size:.8rem;
+  background:var(--surf); color:var(--fg); border:1px solid var(--line); border-radius:20px;
+  padding:.4em .9em; cursor:pointer}
+
+/* ====== SCREEN ====== */
+@media screen{
+  .portada{padding:4vh 0 3.5em; border-bottom:1px solid var(--line); margin-bottom:3em}
+  .portada .meta{margin-top:3em}
+  .indice .pg,.indice .dots{display:none}
+}
+
+/* ====== PRINT ====== */
+@media print{
+  .portada .meta{margin-top:auto}
+  @page{
+    size:A4; margin:20mm 22mm 17mm;
+    /* Running header/footer. The center boxes carry a space so the hairline
+       runs continuously across the page. Replace the text strings. */
+    @top-left{content:"{{NAME}}"; font-family:var(--sans); font-size:8pt; color:#9a8f80; vertical-align:bottom; padding-bottom:3pt; border-bottom:0.75pt solid #dbd0be}
+    @top-center{content:" "; border-bottom:0.75pt solid #dbd0be}
+    @top-right{content:"{{MANUAL TITLE}}"; font-family:var(--sans); font-size:8pt; color:#9a8f80; vertical-align:bottom; padding-bottom:3pt; border-bottom:0.75pt solid #dbd0be}
+    @bottom-left{content:"{{VERSION · DATE}}"; font-family:var(--sans); font-size:8pt; color:#9a8f80; vertical-align:top; padding-top:3pt; border-top:0.75pt solid #dbd0be}
+    @bottom-center{content:" "; border-top:0.75pt solid #dbd0be}
+    @bottom-right{content:counter(page); font-family:var(--mono); font-size:8pt; color:#9a8f80; vertical-align:top; padding-top:3pt; border-top:0.75pt solid #dbd0be}
+  }
+  @page:first{  /* cover: no header, no footer, no rules */
+    @top-left{content:""; border:none} @top-center{content:""; border:none} @top-right{content:""; border:none}
+    @bottom-left{content:""; border:none} @bottom-center{content:""; border:none} @bottom-right{content:""; border:none}
+  }
+  :root{--bg:#fff}
+  html,body{background:#fff}
+  .tema{display:none}
+  .hoja{max-width:none; margin:0; padding:0; font-size:10.5pt}
+  h1.sec{break-before:page; break-after:avoid; padding-top:6mm}
+  h2.sub{break-after:avoid}
+  .portada{break-after:page; min-height:0; height:calc(297mm - 40mm)}
+  h1.sec.no-break{break-before:auto}   /* index heading: no page break before it */
+  table,.fig,.firma-demo,.nota,.usos{break-inside:avoid}
+  .pie,.etiqueta.abajo{break-before:avoid}
+  p,li{orphans:2; widows:2}
+}
+</style>
+</head>
+<body>
+<button class="tema" onclick="var r=document.documentElement;r.dataset.theme=r.dataset.theme==='dark'?'light':'dark'">{{THEME LABEL}}</button>
+<div class="hoja">
+
+<!-- ============================ COVER ============================ -->
+<section class="portada">
+  <div class="nombre">{{NAME}}</div>
+  <div class="rol">{{ROLE}}</div>
+  <div class="regla-color"></div>
+  <div class="subt">{{MANUAL TITLE}}</div>
+  <div class="meta">
+    <div><b>{{Version}}</b>1.0</div>
+    <div><b>{{Date}}</b>{{month year}}</div>
+    <div><b>{{Status}}</b>{{Current}}</div>
+    <div><b>{{Review}}</b>{{month year}}</div>
+  </div>
+</section>
+
+<!-- ============================ INDEX ============================
+     Subsections indent under their section, each with its page number.
+     No dot leader. Fill page numbers last, once pagination is stable. -->
+<h1 class="sec no-break">{{Contents}}</h1>
+<ol class="indice">
+  <li><a href="#s1"><span class="n">1</span><span class="t">{{Introduction}}</span><span class="dots"></span><span class="pg">3</span></a></li>
+  <li><a href="#s2"><span class="n">2</span><span class="t">{{Essence}}</span><span class="dots"></span><span class="pg">4</span></a></li>
+  <li>
+    <a href="#s3"><span class="n">3</span><span class="t">{{Purpose and personality}}</span><span class="dots"></span><span class="pg">5</span></a>
+    <a class="sub" href="#s3-1"><span class="n">3.1</span><span class="t">{{Purpose}}</span><span class="dots"></span><span class="pg">5</span></a>
+    <a class="sub" href="#s3-2"><span class="n">3.2</span><span class="t">{{Personality}}</span><span class="dots"></span><span class="pg">5</span></a>
+  </li>
+  <!-- ... sections 4–9 follow the same pattern ... -->
+  <li><a href="#sa"><span class="n">A</span><span class="t">{{Appendix}}</span><span class="dots"></span><span class="pg">12</span></a></li>
+</ol>
+
+<!-- ==================== 1 · INTRODUCTION ==================== -->
+<h1 class="sec" id="s1"><span class="num">1</span>{{Introduction}}</h1>
+<p class="lead">{{Lead: one sentence stating what the manual settles.}}</p>
+<p>{{Body paragraph. Justified and hyphenated, same measure as every other block.}}</p>
+
+<!-- ==================== 2 · ESSENCE (with a note) ==================== -->
+<h1 class="sec" id="s2"><span class="num">2</span>{{Essence}}</h1>
+<p class="lead">{{The essence in one sentence.}}</p>
+<p>{{Why that sentence is the centre.}}</p>
+<div class="nota"><strong>{{Note title.}}</strong> {{A callout: a rule or coherence test. Label sits left in the signal colour.}}</div>
+
+<!-- ============ 3 · SUBSECTIONS + TABLE (label ABOVE) ============ -->
+<h1 class="sec" id="s3"><span class="num">3</span>{{Purpose and personality}}</h1>
+<h2 class="sub" id="s3-1"><span class="subnum">3.1</span>{{Purpose}}</h2>
+<p>{{Purpose paragraph.}}</p>
+<h2 class="sub" id="s3-2"><span class="subnum">3.2</span>{{Personality}}</h2>
+<p>{{Intro to the table.}}</p>
+<div class="etiqueta">{{Table 1 · Title}}</div>   <!-- table label goes ABOVE -->
+<table>
+  <thead><tr><th>{{Col A}}</th><th>{{Col B}}</th><th>{{Col C}}</th></tr></thead>
+  <tbody>
+    <tr><td>{{...}}</td><td>{{...}}</td><td>{{...}}</td></tr>
+    <tr><td>{{...}}</td><td>{{...}}</td><td>{{...}}</td></tr>
+  </tbody>
+</table>
+<p class="pie">{{Caption. Explains what to read in the table.}}</p>
+
+<!-- ============ 4 · LIST + FIGURE (label at the FOOT) ============ -->
+<h1 class="sec" id="s4"><span class="num">4</span>{{Values and tone}}</h1>
+<h2 class="sub" id="s4-1"><span class="subnum">4.1</span>{{Values}}</h2>
+<ul>
+  <li><strong>{{Value.}}</strong> {{Gloss.}}</li>
+  <li><strong>{{Value.}}</strong> {{Gloss.}}</li>
+</ul>
+<h2 class="sub" id="s4-2"><span class="subnum">4.2</span>{{Tone}}</h2>
+<p>{{Tone intro.}}</p>
+<div class="usos">
+  <div class="uso si"><div class="marca">{{Like this}}</div>{{On-tone example.}}</div>
+  <div class="uso no"><div class="marca">{{Not this}}</div>{{Off-tone example.}}</div>
+</div>
+<div class="etiqueta abajo">{{Figure 1 · Title}}</div>   <!-- figure label goes at the FOOT -->
+<p class="pie">{{Caption.}}</p>
+
+<!-- ==================== 5 · COLOUR: swatches + proportion bar + WCAG ==================== -->
+<h1 class="sec" id="s5"><span class="num">5</span>{{Colour system and roles}}</h1>
+<p class="lead">{{Colour direction: what it conveys, what it avoids.}}</p>
+
+<div class="fig swatches">
+  <!-- one .sw per role; the inline background is the actual decided hex -->
+  <div class="sw"><div class="muestra" style="background:#FFFFFF"></div><div class="txt"><div class="rol">{{Background}}</div><div class="hex">#FFFFFF</div></div></div>
+  <div class="sw"><div class="muestra" style="background:#F4F2EF"></div><div class="txt"><div class="rol">{{Surface}}</div><div class="hex">#F4F2EF</div></div></div>
+  <div class="sw"><div class="muestra" style="background:#3A3A3A"></div><div class="txt"><div class="rol">{{Primary}}</div><div class="hex">#3A3A3A</div></div></div>
+</div>
+<div class="etiqueta abajo">{{Figure 2 · Palette and roles}}</div>
+
+<div class="fig">
+  <div class="barra">   <!-- proportion bar; flex-basis is the share -->
+    <span style="background:#8A8A8A; flex:0 0 90%">90 %</span>
+    <span style="background:#3A3A3A; flex:0 0 8%">8 %</span>
+    <span style="background:#B0B0B0; flex:0 0 2%"></span>
+  </div>
+  <div class="leyenda">
+    <span><i style="background:#8A8A8A"></i>{{90 % neutrals}}</span>
+    <span><i style="background:#3A3A3A"></i>{{8 % primary}}</span>
+    <span><i style="background:#B0B0B0"></i>{{2 % signal}}</span>
+  </div>
+</div>
+<div class="etiqueta abajo">{{Figure 3 · Usage proportion}}</div>
+
+<div class="etiqueta">{{Table 2 · Verified contrast (WCAG 2.1)}}</div>
+<table>
+  <thead><tr><th>{{Pair}}</th><th>{{Use}}</th><th>{{Ratio}}</th><th>{{Level}}</th></tr></thead>
+  <tbody>
+    <tr><td>{{Text on background}}</td><td>{{Body}}</td><td class="mono">0,00</td><td>AAA</td></tr>
+    <tr><td>{{Primary on background}}</td><td>{{Headings, links}}</td><td class="mono">0,00</td><td>AA</td></tr>
+  </tbody>
+</table>
+<p class="pie">{{Caption: never rely on colour alone; the signal always carries text or shape.}}</p>
+
+<!-- ==================== 6 · TYPE: families + scale ==================== -->
+<h1 class="sec" id="s6"><span class="num">6</span>{{Typography}}</h1>
+<p class="lead">{{Type character in one sentence. Freely licensed, so it can be embedded.}}</p>
+<div class="etiqueta">{{Table 3 · Families and uses}}</div>
+<table>
+  <thead><tr><th>{{Family}}</th><th>{{Use}}</th><th>{{Licence}}</th></tr></thead>
+  <tbody>
+    <tr><td><strong>{{Serif}}</strong></td><td>{{Headings, signature}}</td><td class="mono">OFL</td></tr>
+    <tr><td><strong>{{Sans}}</strong></td><td>{{Body, tables}}</td><td class="mono">OFL</td></tr>
+    <tr><td><strong>{{Mono}}</strong></td><td>{{Figures, tokens}}</td><td class="mono">OFL</td></tr>
+  </tbody>
+</table>
+<div class="fig escala">
+  <div><span class="et">2,1 rem</span><span style="font-family:var(--serif);font-weight:600;font-size:2.1rem">{{Section title}}</span></div>
+  <div><span class="et">1,2 rem</span><span style="font-size:1.2rem;color:var(--fg2)">{{Opening lead}}</span></div>
+  <div><span class="et">1 rem</span><span style="font-size:1rem">{{Reading body}}</span></div>
+  <div><span class="et">0,72 rem</span><span style="font-weight:700;font-size:.72rem;letter-spacing:.09em;text-transform:uppercase;color:var(--sig)">{{Label}}</span></div>
+  <div><span class="et">mono</span><span style="font-family:var(--mono);font-size:.9rem">000 · 00,0</span></div>
+</div>
+<div class="etiqueta abajo">{{Figure 4 · Type scale}}</div>
+<p class="pie">{{Caption: a cap on styles; each has one job.}}</p>
+
+<!-- ==================== 7 · SIGNATURE (or logo) ==================== -->
+<h1 class="sec" id="s7"><span class="num">7</span>{{Signature}}</h1>
+<p class="lead">{{The mark stated: a name set in type, or a logo if one exists.}}</p>
+<div class="firma-demo">
+  <div class="firma-nom">{{NAME}}</div>
+  <div class="firma-rol">{{ROLE}}</div>
+</div>
+<div class="etiqueta abajo">{{Figure 5 · The name signature}}</div>
+<h2 class="sub" id="s7-1"><span class="subnum">7.1</span>{{Rules}}</h2>
+<ul>
+  <li><strong>{{Clear space.}}</strong> {{...}}</li>
+  <li><strong>{{Minimum size.}}</strong> {{...}}</li>
+  <li><strong>{{Colour.}}</strong> {{...}}</li>
+</ul>
+<div class="usos">
+  <div class="uso si"><div class="marca">{{Correct}}</div>{{...}}</div>
+  <div class="uso no"><div class="marca">{{Incorrect}}</div>{{...}}</div>
+</div>
+<div class="etiqueta abajo">{{Figure 6 · Correct and incorrect use}}</div>
+
+<!-- ==================== 8 · GRAPHIC ELEMENTS & LAYOUT ==================== -->
+<h1 class="sec" id="s8"><span class="num">8</span>{{Graphic elements and layout}}</h1>
+<h2 class="sub" id="s8-1"><span class="subnum">8.1</span>{{Grid and air}}</h2>
+<p>{{...}}</p>
+<h2 class="sub" id="s8-2"><span class="subnum">8.2</span>{{Tables and figures}}</h2>
+<p>{{...}}</p>
+<h2 class="sub" id="s8-3"><span class="subnum">8.3</span>{{Page format}}</h2>
+<p>{{On screen the manual is continuous; printed to PDF it is paginated.}}</p>
+<div class="nota"><strong>{{Printing.}}</strong> {{Print from a Chromium browser (Chrome or Edge) with "Background graphics" on, so the surface colours reach the PDF.}}</div>
+
+<!-- ==================== 9 · RECOMMENDATIONS ==================== -->
+<h1 class="sec" id="s9"><span class="num">9</span>{{Usage recommendations}}</h1>
+<ul>
+  <li><strong>{{Context.}}</strong> {{...}}</li>
+  <li><strong>{{What not to do.}}</strong> {{...}}</li>
+</ul>
+
+<!-- ==================== APPENDIX A · TOKEN SHEET ====================
+     The contract other tools read. Every decided value in one place. -->
+<h1 class="sec" id="sa">{{Appendix A · Token sheet}}</h1>
+<div class="etiqueta">{{Table 4 · Colour tokens}}</div>
+<table>
+  <thead><tr><th>{{Role}}</th><th>{{Light}}</th><th>{{Dark}}</th></tr></thead>
+  <tbody>
+    <tr><td>{{Background}}</td><td class="mono">#FFFFFF</td><td class="mono">#1B1B1B</td></tr>
+    <tr><td>{{Surface}}</td><td class="mono">#F4F2EF</td><td class="mono">#262626</td></tr>
+    <tr><td>{{Text}}</td><td class="mono">#1A1A1A</td><td class="mono">#EDEDED</td></tr>
+    <tr><td>{{Primary}}</td><td class="mono">#3A3A3A</td><td class="mono">#BFBFBF</td></tr>
+    <tr><td>{{Signal}}</td><td class="mono">#8A8A8A</td><td class="mono">#9A9A9A</td></tr>
+  </tbody>
+</table>
+<div class="etiqueta">{{Table 5 · Type tokens}}</div>
+<table>
+  <thead><tr><th>{{Token}}</th><th>{{Value}}</th></tr></thead>
+  <tbody>
+    <tr><td>{{Serif (headings)}}</td><td class="mono">{{Family, weight}}</td></tr>
+    <tr><td>{{Sans (body)}}</td><td class="mono">{{Family, weights}}</td></tr>
+    <tr><td>{{Mono (figures)}}</td><td class="mono">{{Family, weights}}</td></tr>
+    <tr><td>{{Scale}}</td><td class="mono">2,1 · 1,2 · 1 · 0,72 rem</td></tr>
+    <tr><td>{{Colour proportion}}</td><td class="mono">90 / 8 / 2</td></tr>
+  </tbody>
+</table>
+
+<!-- ==================== APPENDIX B · TYPE PROVENANCE ==================== -->
+<h1 class="sec" id="sb">{{Appendix B · Type provenance}}</h1>
+<p>{{The families are freely licensed (SIL Open Font License 1.1), which is why they can be embedded and reused at no cost.}}</p>
+<ul>
+  <li><strong>{{Serif}}</strong>, {{foundry / author. One line.}}</li>
+  <li><strong>{{Sans}}</strong>, {{foundry / author. One line.}}</li>
+  <li><strong>{{Mono}}</strong>, {{foundry / author. One line.}}</li>
+</ul>
+
+</div>
+</body>
+</html>

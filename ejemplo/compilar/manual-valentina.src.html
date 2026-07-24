@@ -1,0 +1,417 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Valentina Ortúzar · Manual de identidad</title>
+<style>
+/*FONTS*/
+:root{
+  --bg:#EBEAE6; --surf:#DEDCD6; --fg:#1A1A18; --fg2:#6A6862;
+  --pri:#1A1A18; --pri2:#1A1A18; --sig:#F4C400; --line:#D4D2CB; --blanco:#FFFFFF;
+  --sans:'IBM Plex Sans',system-ui,sans-serif;
+  --serif:var(--sans);
+  --mono:'IBM Plex Mono','Courier New',monospace;
+}
+:root[data-theme="dark"]{
+  --bg:#1A1A17; --surf:#242320; --fg:#ECEAE3; --fg2:#A4A29B;
+  --pri:#ECEAE3; --pri2:#ECEAE3; --sig:#F4C400; --line:#33322C;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#1A1A17; --surf:#242320; --fg:#ECEAE3; --fg2:#A4A29B;
+    --pri:#ECEAE3; --pri2:#ECEAE3; --sig:#F4C400; --line:#33322C;
+  }
+}
+
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0; background:var(--bg); color:var(--fg);
+  font-family:var(--sans); font-size:17px; line-height:1.6; font-weight:400}
+.hoja{max-width:720px; margin:0 auto; padding:48px 32px 96px}
+
+h1.sec{font-family:var(--sans); font-weight:600; font-size:2.1rem; line-height:1.15;
+  margin:0 0 .2em; color:var(--fg); letter-spacing:-.01em}
+h1.sec .num{color:var(--pri2); font-variant-numeric:tabular-nums; margin-right:.5rem}
+h2.sub{font-family:var(--sans); font-weight:700; font-size:1.15rem; line-height:1.3;
+  margin:2.2em 0 .6em; color:var(--pri2)}
+h2.sub .subnum{color:var(--pri2); margin-right:.5rem; font-variant-numeric:tabular-nums}
+.lead{font-size:1.2rem; line-height:1.5; color:var(--fg2); margin:.4em 0 1.6em;
+  text-align:justify; hyphens:auto; -webkit-hyphens:auto}
+p{margin:0 0 1em; text-align:justify; hyphens:auto; -webkit-hyphens:auto}
+strong{font-weight:700}
+a{color:var(--fg); text-decoration:underline; text-underline-offset:2px}
+ul,ol{padding-left:1.3em}
+li{margin:.35em 0}
+.hoja ul li,.hoja > ol li{text-align:justify; hyphens:auto; -webkit-hyphens:auto}
+.indice li{text-align:left; hyphens:manual}
+
+.nota{background:var(--surf); border-left:4px solid var(--sig);
+  padding:.9em 1.1em; margin:1.4em 0; font-size:.96rem; color:var(--fg2);
+  border-radius:0 4px 4px 0; text-align:justify; hyphens:auto; -webkit-hyphens:auto}
+.nota strong{color:var(--fg)}
+
+.etiqueta{font-family:var(--sans); font-weight:700; font-size:.72rem; letter-spacing:.09em;
+  text-transform:uppercase; color:var(--fg); margin:2em 0 .5em}
+.etiqueta::before{content:""; display:inline-block; width:.62em; height:.62em; background:var(--sig);
+  margin-right:.55em; vertical-align:baseline; position:relative; top:.02em}
+.etiqueta.abajo{margin:.7em 0 .35em}
+.etiqueta.abajo + .pie{margin-top:0}
+.pie{font-size:.82rem; color:var(--fg2); margin:.5em 0 1.6em; text-align:justify; hyphens:auto; -webkit-hyphens:auto}
+
+table{border-collapse:collapse; width:100%; max-width:100%; margin:.3em 0 .4em; font-size:.9rem}
+thead th{text-align:left; font-family:var(--sans); font-weight:700; font-size:.74rem;
+  letter-spacing:.05em; text-transform:uppercase; color:var(--fg2);
+  border-bottom:1.5px solid var(--fg2); padding:.5em .7em}
+td{border-bottom:1px solid var(--line); padding:.55em .7em; vertical-align:top}
+tbody tr:last-child td{border-bottom:1.5px solid var(--fg2)}
+.mono,td.mono,code{font-family:var(--mono); font-size:.82em}
+td.mono{white-space:nowrap}
+
+.fig{margin:1.7em 0 .4em}
+.barra{display:flex; height:34px; border-radius:5px; overflow:hidden; font-size:.72rem;
+  font-weight:700; max-width:100%}
+.barra span{display:flex; align-items:center; justify-content:center; white-space:nowrap}
+.leyenda{display:flex; gap:1.6em; flex-wrap:wrap; margin:.7em 0 0; font-size:.82rem; color:var(--fg2)}
+.leyenda span{display:flex; align-items:center; gap:.45em}
+.leyenda i{width:12px; height:12px; border-radius:3px; display:inline-block; flex:none}
+.swatches{display:grid; grid-template-columns:repeat(auto-fill,minmax(150px,1fr)); gap:12px}
+.sw{border:1px solid var(--line); border-radius:6px; overflow:hidden; background:var(--surf)}
+.sw .muestra{height:56px}
+.sw .txt{padding:.5em .6em}
+.sw .rol{font-weight:700; font-size:.82rem}
+.sw .hex{font-family:var(--mono); font-size:.74rem; color:var(--fg2)}
+.escala > div{border-bottom:1px solid var(--line); padding:.35em 0; display:flex; align-items:baseline; gap:1em}
+.escala .et{font-family:var(--mono); font-size:.7rem; color:var(--fg2); width:5.5em; flex:none}
+
+/* Logotipo: símbolo VO */
+.marca{display:block; color:var(--pri)}
+.logo-firma{display:inline-flex; align-items:center; gap:22px; border:1px solid var(--line);
+  border-radius:8px; padding:24px 30px; background:var(--surf); margin:1.4em 0 .4em}
+.logo-firma .marca{width:72px; height:72px; flex:none}
+.logo-firma .nom{font-family:var(--sans); font-weight:600; font-size:1.5rem; line-height:1.1; color:var(--fg); letter-spacing:.01em}
+.logo-firma .rol{font-family:var(--sans); font-weight:700; font-size:.7rem; letter-spacing:.22em;
+  text-transform:uppercase; color:var(--fg2); margin-top:.4em}
+.logos{display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin:1.4em 0 .4em}
+.logocell{border:1px solid var(--line); border-radius:6px; min-height:120px; display:flex;
+  flex-direction:column; align-items:center; justify-content:center; gap:.8em; padding:1em}
+.logocell .marca{width:48px; height:48px}
+.logocell .cap{font-size:.68rem; letter-spacing:.06em; text-transform:uppercase; font-weight:700; color:var(--fg2)}
+.logocell.pos{background:var(--bg)}
+.logocell.inv{background:var(--pri)}
+.logocell.inv .marca{color:var(--bg)} .logocell.inv .cap{color:var(--bg)}
+.logocell.una{background:var(--surf)} .logocell.una .marca{color:#000}
+
+.usos{display:grid; grid-template-columns:1fr 1fr; gap:16px; margin:1.7em 0 .4em}
+.uso{border:1px solid var(--line); border-radius:6px; padding:.9em 1em; font-size:.9rem}
+.uso.si{border-top:3px solid var(--sig)}
+.uso.no{border-top:3px solid var(--fg)}
+.uso .marca-t{font-weight:700; font-size:.74rem; letter-spacing:.05em; text-transform:uppercase; margin-bottom:.4em; color:var(--fg)}
+
+.portada{display:flex; flex-direction:column}
+.portada .marca{width:78px; height:78px; margin-bottom:1.5em}
+.portada .nombre{font-family:var(--sans); font-weight:600; font-size:3.2rem; line-height:1; letter-spacing:-.015em}
+.portada .rol{font-family:var(--sans); font-weight:700; font-size:.86rem; letter-spacing:.3em;
+  text-transform:uppercase; color:var(--fg); margin:1.1em 0 0}
+.portada .cinta{height:12px; background:var(--sig); width:150px; margin:1.6em 0 0}
+.portada .subt{font-family:var(--sans); font-weight:400; font-size:1.3rem; color:var(--fg2); margin:2.2em 0 0}
+.portada .meta{padding-top:3em; font-size:.86rem; color:var(--fg2);
+  display:flex; gap:2.5em; flex-wrap:wrap; font-family:var(--mono)}
+.portada .meta b{color:var(--fg); font-weight:700; display:block; font-family:var(--sans); font-size:.7rem;
+  letter-spacing:.06em; text-transform:uppercase}
+
+.indice{list-style:none; padding:0}
+.indice li{border-bottom:1px solid var(--line); padding:.5em 0; margin:0}
+.indice a{display:flex; align-items:baseline; gap:.55em; color:var(--fg); text-decoration:none}
+.indice .n{color:var(--pri2); font-family:var(--mono); font-size:.8rem; flex:none; width:2.2em}
+.indice .t{flex:0 1 auto}
+.indice a.sub{color:var(--fg2); font-size:.9rem; padding:.3em 0 0 2.75em}
+.indice a.sub .n{width:3em; font-size:.72rem}
+.indice .dots{flex:1 1 auto}
+.indice .pg{font-family:var(--mono); font-size:.8rem; color:var(--fg2); flex:none}
+
+.tema{position:fixed; top:14px; right:14px; z-index:9; font-family:var(--sans); font-size:.8rem;
+  background:var(--surf); color:var(--fg); border:1px solid var(--line); border-radius:20px;
+  padding:.4em .9em; cursor:pointer}
+
+@media screen{
+  .portada{padding:4vh 0 3.5em; border-bottom:1px solid var(--line); margin-bottom:3em}
+  .portada .meta{margin-top:3em}
+  .indice .pg,.indice .dots{display:none}
+}
+@media print{
+  .portada .meta{margin-top:auto}
+  @page{
+    size:A4; margin:20mm 22mm 17mm;
+    @top-left{content:"Valentina Ortúzar"; font-family:'IBM Plex Sans',sans-serif; font-size:8pt; color:#8a877f; vertical-align:bottom; padding-bottom:3pt; border-bottom:0.75pt solid #cdcbc3}
+    @top-center{content:" "; border-bottom:0.75pt solid #cdcbc3}
+    @top-right{content:"Manual de identidad"; font-family:'IBM Plex Sans',sans-serif; font-size:8pt; color:#8a877f; vertical-align:bottom; padding-bottom:3pt; border-bottom:0.75pt solid #cdcbc3}
+    @bottom-left{content:"Versión 1.0 · julio de 2026"; font-family:'IBM Plex Sans',sans-serif; font-size:8pt; color:#8a877f; vertical-align:top; padding-top:3pt; border-top:0.75pt solid #cdcbc3}
+    @bottom-center{content:" "; border-top:0.75pt solid #cdcbc3}
+    @bottom-right{content:counter(page); font-family:'IBM Plex Mono',monospace; font-size:8pt; color:#8a877f; vertical-align:top; padding-top:3pt; border-top:0.75pt solid #cdcbc3}
+  }
+  @page:first{
+    @top-left{content:""; border:none} @top-center{content:""; border:none} @top-right{content:""; border:none}
+    @bottom-left{content:""; border:none} @bottom-center{content:""; border:none} @bottom-right{content:""; border:none}
+  }
+  :root{--bg:#fff}
+  html,body{background:#fff}
+  .tema{display:none}
+  .hoja{max-width:none; margin:0; padding:0; font-size:10.5pt}
+  h1.sec{break-before:page; break-after:avoid; padding-top:6mm}
+  h2.sub{break-after:avoid}
+  .portada{break-after:page; min-height:0; height:calc(297mm - 40mm)}
+  h1.sec.no-break{break-before:auto}
+  table,.fig,.logo-firma,.logos,.nota,.usos{break-inside:avoid}
+  .pie,.etiqueta.abajo{break-before:avoid}
+  p,li{orphans:2; widows:2}
+}
+</style>
+</head>
+<body>
+<button class="tema" onclick="var r=document.documentElement;r.dataset.theme=r.dataset.theme==='dark'?'light':'dark'">Cambiar tema</button>
+<div class="hoja">
+
+<!-- PORTADA -->
+<section class="portada">
+  <svg class="marca" viewBox="0 0 100 100" aria-hidden="true"><rect x="12" y="12" width="76" height="76" rx="3" fill="none" stroke="currentColor" stroke-width="8"/><path d="M34 30 L50 66 L66 30" fill="none" stroke="currentColor" stroke-width="8" stroke-linejoin="miter" stroke-linecap="square"/></svg>
+  <div class="nombre">Valentina Ortúzar</div>
+  <div class="rol">Arquitecta</div>
+  <div class="cinta"></div>
+  <div class="subt">Manual de identidad de marca personal</div>
+  <div class="meta">
+    <div><b>Versión</b>1.0</div>
+    <div><b>Fecha</b>julio de 2026</div>
+    <div><b>Estado</b>Vigente</div>
+    <div><b>Revisión</b>julio de 2027</div>
+  </div>
+</section>
+
+<!-- INDICE -->
+<h1 class="sec no-break">Índice</h1>
+<ol class="indice">
+  <li><a href="#s1"><span class="n">1</span><span class="t">Introducción</span><span class="dots"></span><span class="pg">3</span></a></li>
+  <li><a href="#s2"><span class="n">2</span><span class="t">Esencia</span><span class="dots"></span><span class="pg">4</span></a></li>
+  <li>
+    <a href="#s3"><span class="n">3</span><span class="t">Propósito y personalidad</span><span class="dots"></span><span class="pg">5</span></a>
+    <a class="sub" href="#s3-1"><span class="n">3.1</span><span class="t">Propósito</span><span class="dots"></span><span class="pg">5</span></a>
+    <a class="sub" href="#s3-2"><span class="n">3.2</span><span class="t">Personalidad</span><span class="dots"></span><span class="pg">5</span></a>
+  </li>
+  <li>
+    <a href="#s4"><span class="n">4</span><span class="t">Valores y tono</span><span class="dots"></span><span class="pg">6</span></a>
+    <a class="sub" href="#s4-1"><span class="n">4.1</span><span class="t">Valores</span><span class="dots"></span><span class="pg">6</span></a>
+    <a class="sub" href="#s4-2"><span class="n">4.2</span><span class="t">Tono</span><span class="dots"></span><span class="pg">6</span></a>
+  </li>
+  <li><a href="#s5"><span class="n">5</span><span class="t">Sistema de color y roles</span><span class="dots"></span><span class="pg">7</span></a></li>
+  <li><a href="#s6"><span class="n">6</span><span class="t">Tipografía</span><span class="dots"></span><span class="pg">8</span></a></li>
+  <li>
+    <a href="#s7"><span class="n">7</span><span class="t">Logotipo</span><span class="dots"></span><span class="pg">9</span></a>
+    <a class="sub" href="#s7-1"><span class="n">7.1</span><span class="t">Reglas</span><span class="dots"></span><span class="pg">9</span></a>
+  </li>
+  <li>
+    <a href="#s8"><span class="n">8</span><span class="t">Elementos gráficos y composición</span><span class="dots"></span><span class="pg">10</span></a>
+    <a class="sub" href="#s8-1"><span class="n">8.1</span><span class="t">Retícula y aire</span><span class="dots"></span><span class="pg">10</span></a>
+    <a class="sub" href="#s8-2"><span class="n">8.2</span><span class="t">Cuadros y figuras</span><span class="dots"></span><span class="pg">10</span></a>
+    <a class="sub" href="#s8-3"><span class="n">8.3</span><span class="t">Formato de página</span><span class="dots"></span><span class="pg">10</span></a>
+  </li>
+  <li><a href="#s9"><span class="n">9</span><span class="t">Recomendaciones de uso</span><span class="dots"></span><span class="pg">11</span></a></li>
+  <li><a href="#sa"><span class="n">A</span><span class="t">Ficha técnica</span><span class="dots"></span><span class="pg">12</span></a></li>
+  <li><a href="#sb"><span class="n">B</span><span class="t">Procedencia de tipografías</span><span class="dots"></span><span class="pg">13</span></a></li>
+</ol>
+
+<!-- 1 -->
+<h1 class="sec" id="s1"><span class="num">1</span>Introducción</h1>
+<p class="lead">Este manual fija cómo se ve y cómo se nombra mi trabajo, para que un plano, un cartel de obra y una memoria se lean como del mismo estudio.</p>
+<p>Trabajo sola, con colaboradores que entran y salen según el proyecto. Sin un sistema escrito, cada pieza saldría distinta según quién la arme. Este documento es ese sistema.</p>
+<p>Acá están el color, la tipografía, el logotipo, la manera de componer y el tono con que escribo. No es un catálogo de obra; es la regla que mantiene todo reconocible.</p>
+<p><strong>Cómo se lee.</strong> Las secciones 2 a 4 son el fundamento: qué hago y cómo lo digo. Las secciones 5 a 8 son el sistema visual. La 9 resume el uso diario. El Anexo A reúne los valores en una ficha; ante cualquier duda, manda esa ficha.</p>
+
+<!-- 2 -->
+<h1 class="sec" id="s2"><span class="num">2</span>Esencia</h1>
+<p class="lead">Diseño espacios donde la estructura y el uso deciden la forma, no el gesto.</p>
+<p>Esa frase es el centro. Si le quito el estilo, el material y hasta el programa, sigue siendo cierta. No busco el edificio que sorprende en la foto, sino el que funciona el primer día y el año diez.</p>
+<div class="nota"><strong>Prueba de coherencia.</strong> Antes de cerrar una decisión me pregunto si responde al uso y a la estructura. Un recurso que solo busca efecto no pasa la prueba.</div>
+
+<!-- 3 -->
+<h1 class="sec" id="s3"><span class="num">3</span>Propósito y personalidad</h1>
+<h2 class="sub" id="s3-1"><span class="subnum">3.1</span>Propósito</h2>
+<p>Que un edificio resuelva bien lo ordinario: la luz, el recorrido, la temperatura, el paso del tiempo. Cuando eso está resuelto, la forma se sostiene sola.</p>
+<h2 class="sub" id="s3-2"><span class="subnum">3.2</span>Personalidad</h2>
+<p>Mi carácter se define eligiendo un lado, no quedándome en el medio. Estas son las posiciones que marcan cómo trabajo:</p>
+<div class="etiqueta">Cuadro 1 · Posiciones de carácter</div>
+<table>
+  <thead><tr><th>Más</th><th>Que</th><th>Se nota en</th></tr></thead>
+  <tbody>
+    <tr><td>Estructural</td><td>expresiva</td><td>La forma sale de la lógica constructiva.</td></tr>
+    <tr><td>Sobria</td><td>ornamental</td><td>Un material bien puesto, no tres decorando.</td></tr>
+    <tr><td>Precisa</td><td>intuitiva</td><td>Decido con la cota y el detalle, no con la impresión.</td></tr>
+    <tr><td>Paciente</td><td>inmediata</td><td>El proyecto madura; no entrego el primer impulso.</td></tr>
+  </tbody>
+</table>
+<p class="pie">Elegir un lado no borra el otro: ante un concurso subo la carga expresiva. Pero el eje por defecto es este.</p>
+
+<!-- 4 -->
+<h1 class="sec" id="s4"><span class="num">4</span>Valores y tono</h1>
+<h2 class="sub" id="s4-1"><span class="subnum">4.1</span>Valores</h2>
+<ul>
+  <li><strong>Estructura antes que gesto.</strong> La forma responde a cómo se sostiene y cómo se usa.</li>
+  <li><strong>Materia honesta.</strong> Cada material se muestra como es, sin imitar a otro.</li>
+  <li><strong>Precisión.</strong> La cota manda; el detalle se dibuja, no se improvisa en obra.</li>
+  <li><strong>Durabilidad.</strong> Diseño para que envejezca bien, no para que estrene bien.</li>
+</ul>
+<h2 class="sub" id="s4-2"><span class="subnum">4.2</span>Tono</h2>
+<p>Escribo preciso y sin adornos. Nombro el material, la medida y la razón. No vendo con adjetivos. Reglas mínimas:</p>
+<div class="usos">
+  <div class="uso si"><div class="marca-t">Así suena</div>«La escalera es de hormigón visto: estructura y terminación en una sola pieza, sin revestimiento que mantener.»</div>
+  <div class="uso no"><div class="marca-t">Así no</div>«Una escalera escultórica e icónica que redefine la experiencia de habitar el espacio.»</div>
+</div>
+<div class="etiqueta abajo">Figura 1 · El tono en dos ejemplos</div>
+<p class="pie">La izquierda dice qué es y por qué. La derecha adjetiva y no informa. Ese registro no es el mío.</p>
+
+<!-- 5 -->
+<h1 class="sec" id="s5"><span class="num">5</span>Sistema de color y roles</h1>
+<p class="lead">Gris hormigón, negro y un amarillo de obra. El color no adorna: estructura con el neutro y avisa con el amarillo.</p>
+<p>El sistema es casi monocromo: los grises del hormigón y el negro llevan todo. Un solo amarillo, el de la señalética de obra, marca lo que hay que mirar, y lo hace rellenando, nunca tiñendo el texto. Es el único color, y por eso avisa.</p>
+
+<div class="fig swatches">
+  <div class="sw"><div class="muestra" style="background:#EBEAE6"></div><div class="txt"><div class="rol">Fondo</div><div class="hex">#EBEAE6</div></div></div>
+  <div class="sw"><div class="muestra" style="background:#DEDCD6"></div><div class="txt"><div class="rol">Superficie</div><div class="hex">#DEDCD6</div></div></div>
+  <div class="sw"><div class="muestra" style="background:#1A1A18"></div><div class="txt"><div class="rol">Tinta · texto y estructura</div><div class="hex">#1A1A18</div></div></div>
+  <div class="sw"><div class="muestra" style="background:#F4C400"></div><div class="txt"><div class="rol">Amarillo de obra · señal</div><div class="hex">#F4C400</div></div></div>
+  <div class="sw"><div class="muestra" style="background:#6A6862"></div><div class="txt"><div class="rol">Texto secundario</div><div class="hex">#6A6862</div></div></div>
+  <div class="sw"><div class="muestra" style="background:#D4D2CB"></div><div class="txt"><div class="rol">Filete</div><div class="hex">#D4D2CB</div></div></div>
+</div>
+<div class="etiqueta abajo">Figura 2 · Paleta y roles</div>
+
+<div class="fig">
+  <div class="barra">
+    <span style="background:#6A6862; color:#fff; flex:0 0 90%">90 % neutros</span>
+    <span style="background:#1A1A18; color:#fff; flex:0 0 8%">8 %</span>
+    <span style="background:#F4C400; color:#1A1A18; flex:0 0 2%"></span>
+  </div>
+  <div class="leyenda">
+    <span><i style="background:#6A6862"></i>90 % neutros</span>
+    <span><i style="background:#1A1A18"></i>8 % negro</span>
+    <span><i style="background:#F4C400"></i>2 % amarillo</span>
+  </div>
+</div>
+<div class="etiqueta abajo">Figura 3 · Proporción de uso</div>
+<p class="pie">Los neutros dominan. El negro estructura. El amarillo es señal: marca por bloque, no por línea ni texto. Si se reparte, deja de avisar.</p>
+
+<div class="etiqueta">Cuadro 2 · Contraste verificado (WCAG 2.1)</div>
+<table>
+  <thead><tr><th>Par</th><th>Uso</th><th>Ratio</th><th>Nivel</th></tr></thead>
+  <tbody>
+    <tr><td>Tinta sobre fondo</td><td>Cuerpo</td><td class="mono">14,48</td><td>AAA</td></tr>
+    <tr><td>Tinta sobre superficie</td><td>Cuadros, notas</td><td class="mono">12,71</td><td>AAA</td></tr>
+    <tr><td>Negro sobre amarillo</td><td>Marcas y bloques</td><td class="mono">10,58</td><td>AAA</td></tr>
+    <tr><td>Texto secundario sobre fondo</td><td>Apoyos</td><td class="mono">4,63</td><td>AA</td></tr>
+  </tbody>
+</table>
+<p class="pie">Ningún dato se apoya solo en el color. El amarillo nunca lleva texto ni línea fina: marca rellenando, con negro encima, para que se lea sin depender del tono.</p>
+
+<!-- 6 -->
+<h1 class="sec" id="s6"><span class="num">6</span>Tipografía</h1>
+<p class="lead">Una sola familia grotesca para titular y leer, y su versión monoespaciada para las cotas. De licencia libre, para incrustarla sin permiso ni costo.</p>
+<div class="etiqueta">Cuadro 3 · Familias y usos</div>
+<table>
+  <thead><tr><th>Familia</th><th>Uso</th><th>Licencia</th></tr></thead>
+  <tbody>
+    <tr><td><strong>IBM Plex Sans</strong></td><td>Títulos, cuerpo, cuadros</td><td class="mono">OFL</td></tr>
+    <tr><td><strong>IBM Plex Mono</strong></td><td>Cotas, cifras, tokens</td><td class="mono">OFL</td></tr>
+  </tbody>
+</table>
+<div class="fig escala">
+  <div><span class="et">2,1 rem</span><span style="font-family:var(--sans);font-weight:600;font-size:2.1rem">Título de sección</span></div>
+  <div><span class="et">1,2 rem</span><span style="font-size:1.2rem;color:var(--fg2)">Entradilla que abre</span></div>
+  <div><span class="et">1 rem</span><span style="font-size:1rem">Cuerpo de lectura</span></div>
+  <div><span class="et">0,72 rem</span><span style="font-weight:700;font-size:.72rem;letter-spacing:.09em;text-transform:uppercase">Etiqueta</span></div>
+  <div><span class="et">mono</span><span style="font-family:var(--mono);font-size:.9rem">3,60 m · 42 m²</span></div>
+</div>
+<div class="etiqueta abajo">Figura 4 · Escala tipográfica</div>
+<p class="pie">El tope son nueve estilos; acá alcanzan menos. Una sola familia mantiene el sistema quieto.</p>
+
+<!-- 7 -->
+<h1 class="sec" id="s7"><span class="num">7</span>Logotipo</h1>
+<p class="lead">La marca es un logotipo: un monograma que va en planos, carteles de obra y señalética. No es el nombre escrito a mano.</p>
+<p>El símbolo es la inicial dentro del cuadrado de la planta: la V inscrita en el perímetro, a trazo constante. Se usa sola o junto al nombre. No se redibuja ni se rellena.</p>
+<div class="logo-firma">
+  <svg class="marca" viewBox="0 0 100 100" aria-hidden="true"><rect x="12" y="12" width="76" height="76" rx="3" fill="none" stroke="currentColor" stroke-width="8"/><path d="M34 30 L50 66 L66 30" fill="none" stroke="currentColor" stroke-width="8" stroke-linejoin="miter" stroke-linecap="square"/></svg>
+  <div><div class="nom">Valentina Ortúzar</div><div class="rol">Arquitecta</div></div>
+</div>
+<div class="etiqueta abajo">Figura 5 · El logotipo</div>
+<div class="logos">
+  <div class="logocell pos"><svg class="marca" viewBox="0 0 100 100" aria-hidden="true"><rect x="12" y="12" width="76" height="76" rx="3" fill="none" stroke="currentColor" stroke-width="8"/><path d="M34 30 L50 66 L66 30" fill="none" stroke="currentColor" stroke-width="8" stroke-linejoin="miter" stroke-linecap="square"/></svg><div class="cap">Positiva</div></div>
+  <div class="logocell inv"><svg class="marca" viewBox="0 0 100 100" aria-hidden="true"><rect x="12" y="12" width="76" height="76" rx="3" fill="none" stroke="currentColor" stroke-width="8"/><path d="M34 30 L50 66 L66 30" fill="none" stroke="currentColor" stroke-width="8" stroke-linejoin="miter" stroke-linecap="square"/></svg><div class="cap">Inversa</div></div>
+  <div class="logocell una"><svg class="marca" viewBox="0 0 100 100" aria-hidden="true"><rect x="12" y="12" width="76" height="76" rx="3" fill="none" stroke="currentColor" stroke-width="8"/><path d="M34 30 L50 66 L66 30" fill="none" stroke="currentColor" stroke-width="8" stroke-linejoin="miter" stroke-linecap="square"/></svg><div class="cap">Una tinta</div></div>
+</div>
+<div class="etiqueta abajo">Figura 6 · Versiones</div>
+<h2 class="sub" id="s7-1"><span class="subnum">7.1</span>Reglas</h2>
+<ul>
+  <li><strong>Área de resguardo.</strong> Deja alrededor, como mínimo, la mitad del lado del cuadrado. Nada de texto ni bordes dentro de ese margen.</li>
+  <li><strong>Tamaño mínimo.</strong> El símbolo no baja de 12 mm impreso ni de 28 px en pantalla, para que el trazo no se cierre.</li>
+  <li><strong>Color.</strong> Va en negro sobre fondo claro, o en claro sobre negro. Nunca en el amarillo de señal ni sobre él: el acento no tiñe la marca.</li>
+  <li><strong>Trazo.</strong> El grosor es constante y no se altera. No se aplican sombras, degradados ni contornos.</li>
+</ul>
+<div class="usos">
+  <div class="uso si"><div class="marca-t">Correcto</div>Símbolo en negro sobre fondo claro, con su área de resguardo.</div>
+  <div class="uso no"><div class="marca-t">Incorrecto</div>Rotarlo, deformar la proporción, teñirlo de amarillo o cambiar el grosor del trazo.</div>
+</div>
+<div class="etiqueta abajo">Figura 7 · Uso correcto e incorrecto</div>
+<p class="pie">El logotipo es geométrico por decisión: la marca es la planta y la inicial, no una firma manuscrita.</p>
+
+<!-- 8 -->
+<h1 class="sec" id="s8"><span class="num">8</span>Elementos gráficos y composición</h1>
+<h2 class="sub" id="s8-1"><span class="subnum">8.1</span>Retícula y aire</h2>
+<p>Una columna, márgenes amplios, aire generoso. El vacío es parte del proyecto: un documento apretado contradice cómo compongo.</p>
+<h2 class="sub" id="s8-2"><span class="subnum">8.2</span>Cuadros y figuras</h2>
+<p>Los cuadros van sin líneas verticales, con filete fino horizontal. Cada uno se anuncia con su etiqueta, marcada con un tick amarillo, y cierra con un pie. Las figuras se dibujan con los grises del sistema y el amarillo de señal, nunca con otra paleta.</p>
+<h2 class="sub" id="s8-3"><span class="subnum">8.3</span>Formato de página</h2>
+<p>En pantalla el manual es continuo. Al imprimirlo a PDF aparece paginado: numeración abajo, mi nombre y el título arriba, versión y fecha al pie, y cada sección abre en página nueva. Lo aplica el navegador al imprimir.</p>
+<div class="nota"><strong>Impresión.</strong> Imprime desde un navegador Chromium (Chrome o Edge) con «Gráficos de fondo» activado, para que los grises y el amarillo salgan en el PDF.</div>
+
+<!-- 9 -->
+<h1 class="sec" id="s9"><span class="num">9</span>Recomendaciones de uso</h1>
+<ul>
+  <li><strong>Planos y memorias.</strong> Logotipo en negro arriba, cotas en Plex Mono, un solo amarillo para lo que se destaca.</li>
+  <li><strong>Carteles de obra.</strong> Fondo claro o negro, símbolo grande, nombre en Plex Sans. Legible a distancia.</li>
+  <li><strong>Concursos.</strong> Se puede subir la carga expresiva de las imágenes, pero el color y la tipografía no cambian.</li>
+  <li><strong>Lo que no se hace.</strong> Teñir el logotipo de amarillo, sumar una segunda familia, usar el amarillo para decorar.</li>
+</ul>
+
+<!-- ANEXOS -->
+<h1 class="sec" id="sa">Anexo A · Ficha técnica</h1>
+<div class="etiqueta">Cuadro 4 · Tokens de color</div>
+<table>
+  <thead><tr><th>Rol</th><th>Claro</th><th>Oscuro</th></tr></thead>
+  <tbody>
+    <tr><td>Fondo</td><td class="mono">#EBEAE6</td><td class="mono">#1A1A17</td></tr>
+    <tr><td>Superficie</td><td class="mono">#DEDCD6</td><td class="mono">#242320</td></tr>
+    <tr><td>Tinta</td><td class="mono">#1A1A18</td><td class="mono">#ECEAE3</td></tr>
+    <tr><td>Texto secundario</td><td class="mono">#6A6862</td><td class="mono">#A4A29B</td></tr>
+    <tr><td>Amarillo de obra</td><td class="mono">#F4C400</td><td class="mono">#F4C400</td></tr>
+    <tr><td>Filete</td><td class="mono">#D4D2CB</td><td class="mono">#33322C</td></tr>
+  </tbody>
+</table>
+<div class="etiqueta">Cuadro 5 · Tokens de tipografía</div>
+<table>
+  <thead><tr><th>Token</th><th>Valor</th></tr></thead>
+  <tbody>
+    <tr><td>Sans (títulos y cuerpo)</td><td class="mono">IBM Plex Sans, 400 / 600 / 700</td></tr>
+    <tr><td>Mono (cotas)</td><td class="mono">IBM Plex Mono, 400</td></tr>
+    <tr><td>Escala</td><td class="mono">2,1 · 1,2 · 1 · 0,72 rem</td></tr>
+    <tr><td>Proporción color</td><td class="mono">90 / 8 / 2</td></tr>
+  </tbody>
+</table>
+
+<h1 class="sec" id="sb">Anexo B · Procedencia de tipografías</h1>
+<p>Las dos familias pertenecen a la superfamilia IBM Plex, de licencia libre <span class="mono">SIL Open Font License 1.1</span>, lo que permite incrustarlas en este documento y reutilizarlas sin costo ni permiso.</p>
+<ul>
+  <li><strong>IBM Plex Sans</strong>, de Mike Abbink con Bold Monday para IBM. Grotesca neutral con detalle humanista.</li>
+  <li><strong>IBM Plex Mono</strong>, la versión monoespaciada de la misma familia, para cotas y cifras.</li>
+</ul>
+<p>Este manual es un caso de muestra ficticio, construido para demostrar el método de la skill «Identidad Personal», en su rama de logotipo. Valentina Ortúzar no es una persona real.</p>
+
+</div>
+</body>
+</html>
