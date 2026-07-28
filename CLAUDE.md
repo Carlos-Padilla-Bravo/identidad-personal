@@ -28,8 +28,10 @@ it here.
   palette. The example manuals quote real ratios; keep them true if a color changes.
 - **Keep both READMEs in step.** `README.md` (English, GitHub's default) and
   `README.es.md` (Spanish) carry the same content; edit them together.
-- **Word/`.docx` is not part of this skill.** It points to `wordkit`, a separate
-  library in its own repository.
+- **Word/`.docx` is not part of this skill.** It points to
+  [`ooxmlkit`](https://github.com/Carlos-Padilla-Bravo/ooxmlkit), a separate
+  library in its own repository. Don't absorb it: it needs Windows and Word,
+  which is exactly what the HTML deliverable avoids.
 
 ## Layout
 

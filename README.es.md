@@ -31,7 +31,7 @@ Sirve a quien produce trabajo a su nombre y quiere que se vea y suene consistent
 - No te inventa el propósito ni el posicionamiento. Te ayuda a articular lo que ya haces, no a fabricar una identidad que no tienes.
 - No hace identidad corporativa. Es marca de una persona, no de una empresa.
 - No produce fotografía ni ilustración, ni gestiona tus redes o tu plan de contenidos. Es el sistema visual y verbal, no la estrategia de difusión.
-- No produce por sí misma un .docx de Word. Un documento editable es tarea de `wordkit`, una librería aparte pensada como proyecto independiente; la skill entrega el HTML y su PDF.
+- No produce por sí misma un .docx de Word. Un documento editable es tarea de [`ooxmlkit`](https://github.com/Carlos-Padilla-Bravo/ooxmlkit), una librería aparte; la skill entrega el HTML y su PDF.
 - No reemplaza a un diseñador cuando el encargo excede un sistema documentado.
 
 ## 3. Cómo funciona
@@ -108,4 +108,4 @@ Publicado bajo licencia **MIT**. Copyright (c) 2026 Carlos Padilla Bravo. Puedes
 
 Autor: **Carlos Padilla Bravo**
 
-`wordkit` es una librería aparte, pensada como proyecto independiente y aún no publicada, para desarrolladores que quieren una capa que genere un .docx de Word. Esta skill no la usa ni la incluye: entrega el manual en HTML, que imprime el PDF paginado formal en cualquier sistema. `wordkit` solo importaría si necesitas un .docx editable.
+[`ooxmlkit`](https://github.com/Carlos-Padilla-Bravo/ooxmlkit) es una librería aparte, para desarrolladores que quieren una capa que genere un .docx de Word. Esta skill no la usa ni la incluye: entrega el manual en HTML, que imprime el PDF paginado formal en cualquier sistema. `ooxmlkit` solo importa si necesitas un .docx editable, y pide un equipo que esta skill no pide: cerrar el documento exige Windows y Microsoft Word.
