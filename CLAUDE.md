@@ -47,4 +47,11 @@ numbers match the real pagination, and hyphenation leaves nothing ugly.
 
 ## Status
 
-Archived: published as is, with no maintenance promised.
+Maintained occasionally, with no promise of support. There is one trigger for a
+change: the author's own identity manual evolves and the lesson generalises beyond
+his case. Anything specific to one person stays out. Issues are disabled, so this
+is not a support channel.
+
+Before porting a rule from a real manual, check it against the two example manuals
+in `ejemplo/`. A rule that would declare one of them wrong is either not general or
+is worded too strongly.

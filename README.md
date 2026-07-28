@@ -102,7 +102,7 @@ An identity manual is not a document you file away. It is the single source that
 
 Released under the **MIT** license. Copyright (c) 2026 Carlos Padilla Bravo. You may use, copy and modify the skill, including in paid work, keeping the authorship notice.
 
-**Status: archived.** Published as is, with no promise of support or maintenance. Issues are disabled.
+**Status: maintained occasionally.** The skill is updated when the author's own identity manual evolves and the lesson generalises beyond his case. There is no promise of support or response times, and issues are disabled, so this is not a support channel. Fork it freely: that is what the MIT license above is for.
 
 ---
 
