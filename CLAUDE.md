@@ -26,6 +26,13 @@ it here.
 - **`assets/plantilla.html` is the mechanical scaffold, not a design.** It carries
   the proven `@page` print CSS and the document structure. Fill its `{{...}}`
   placeholders and `:root` tokens; don't rebuild the print CSS from scratch.
+- **Nothing in the scaffold carries a literal colour, the `@page` boxes least of
+  all.** They used to hold one person's warm grey and rule, which every manual
+  built from the template then inherited: that is how both examples ended up
+  with an 8pt header under AA. `var()` does resolve inside `@page` margin boxes
+  in Chrome, verified by printing, so the running header and footer take
+  `var(--fg2)` and `var(--line)` like everything else and follow whatever
+  palette the person ends up with.
 - **`assets/ficha.html` is the same idea for the one-page card,** and it has
   exactly one mechanic worth protecting: it prints to a single page. After any
   change to it, print it and count the pages (headless Chrome with
