@@ -1,11 +1,10 @@
 <!doctype html>
-<html lang="es" data-theme="light">
+<html lang="es" data-theme="dark">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Ignacia Fuentes — Manual de identidad de marca personal</title>
+<title>Ignacia Fuentes · Ficha de identidad</title>
 <style>
-/* Fraunces · latin-ext */
 @font-face {
   font-family: 'Fraunces';
   font-style: normal;
@@ -119,12 +118,11 @@
 }
 
 
+
+/* Los tokens son los del manual, copiados sin tocar: la ficha no decide nada. */
 :root{
-  --crema:#FAF6EF; --superf:#F1E9DB; --texto:#2A2622; --texto-sec:#6E6459;
-  --primario:#3C6E54; --primario-osc:#2E5943; --senal:#AA4C2C; --borde:#E5DBCB;
-  --blanco:#FFFFFF;
-  --bg:var(--crema); --surf:var(--superf); --fg:var(--texto); --fg2:var(--texto-sec);
-  --pri:var(--primario); --pri2:var(--primario-osc); --sig:var(--senal); --line:var(--borde);
+  --bg:#FAF6EF; --surf:#F1E9DB; --fg:#2A2622; --fg2:#6E6459;
+  --pri:#3C6E54; --pri2:#2E5943; --sig:#AA4C2C; --line:#E5DBCB;
   --serif:'Fraunces',Georgia,serif;
   --sans:'Nunito Sans',system-ui,sans-serif;
   --mono:'Space Mono','Courier New',monospace;
@@ -142,409 +140,190 @@
 
 *{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%}
-body{
-  margin:0; background:var(--bg); color:var(--fg);
-  font-family:var(--sans); font-size:17px; line-height:1.6;
-  font-weight:400;
-}
-.hoja{max-width:720px; margin:0 auto; padding:48px 32px 96px}
+body{margin:0; background:var(--bg); color:var(--fg);
+  font-family:var(--sans); font-size:15px; line-height:1.45; font-weight:400}
+.ficha{max-width:800px; margin:0 auto; padding:40px 32px 64px}
 
-/* --- Estilo 1 y 2: titulos --- */
-h1.sec{
-  font-family:var(--serif); font-weight:600; font-size:2.1rem; line-height:1.15;
-  margin:0 0 .2em; color:var(--fg); letter-spacing:-.01em;
-}
-h1.sec .num{color:var(--pri2); font-variant-numeric:tabular-nums; margin-right:.5rem}
-h2.sub{
-  font-family:var(--sans); font-weight:700; font-size:1.15rem; line-height:1.3;
-  margin:2.2em 0 .6em; color:var(--pri2);
-}
-h2.sub .subnum{color:var(--pri2); margin-right:.5rem; font-variant-numeric:tabular-nums}
-/* --- Estilo 3: entradilla (en bandera, medida corta) --- */
-.lead{font-size:1.2rem; line-height:1.5; color:var(--fg2); margin:.4em 0 1.6em;
-  text-align:justify; hyphens:auto; -webkit-hyphens:auto}
-/* --- Estilo 4: cuerpo (justificado con partición) --- */
-p{margin:0 0 1em; text-align:justify; hyphens:auto; -webkit-hyphens:auto}
-strong{font-weight:700}
-a{color:var(--pri2)}
-ul,ol{padding-left:1.3em}
-li{margin:.35em 0}
-.hoja ul li,.hoja > ol li{text-align:justify; hyphens:auto; -webkit-hyphens:auto}
-.indice li{text-align:left; hyphens:manual}
+.cab{display:flex; align-items:flex-end; justify-content:space-between; gap:2em;
+  padding-bottom:.9em; border-bottom:2px solid var(--pri); margin-bottom:1.4em; flex-wrap:wrap}
+.cab .nombre{font-family:var(--serif); font-weight:600; font-size:2.05rem; line-height:1; letter-spacing:-.01em}
+.cab .rol{font-family:var(--sans); font-weight:700; font-size:.62rem; letter-spacing:.28em;
+  text-transform:uppercase; color:var(--sig); margin-top:.55em}
+.cab .meta{font-family:var(--mono); font-size:.66rem; color:var(--fg2); text-align:right; line-height:1.6}
 
-/* --- Estilo 5: destacado / nota --- */
-.nota{
-  background:var(--surf); border-left:3px solid var(--sig);
-  padding:.9em 1.1em; margin:1.4em 0; font-size:.96rem; color:var(--fg2);
-  border-radius:0 4px 4px 0; text-align:justify; hyphens:auto; -webkit-hyphens:auto;
-}
-.nota strong{color:var(--fg)}
+.rejilla{display:grid; grid-template-columns:1fr 1fr; gap:14px 18px; align-items:start}
+.ancho{grid-column:1 / -1}
+.bloque{break-inside:avoid}
+.rotulo{font-family:var(--sans); font-weight:700; font-size:.6rem; letter-spacing:.09em;
+  text-transform:uppercase; color:var(--sig); margin:0 0 .5em}
 
-/* --- Estilo 6: etiqueta de cuadro/figura --- */
-.etiqueta{
-  font-family:var(--sans); font-weight:700; font-size:.72rem; letter-spacing:.09em;
-  text-transform:uppercase; color:var(--sig); margin:2em 0 .5em;
-}
-.etiqueta.abajo{margin:.7em 0 .35em}  /* titulo de figura, al pie */
-.etiqueta.abajo + .pie{margin-top:0}  /* la nota pega al titulo de la figura */
-.pie{font-size:.82rem; color:var(--fg2); margin:.5em 0 1.6em; text-align:justify; hyphens:auto; -webkit-hyphens:auto}
+.paleta{width:100%; border-collapse:collapse; font-size:.7rem}
+.paleta th{text-align:left; font-weight:700; font-size:.58rem; letter-spacing:.05em;
+  text-transform:uppercase; color:var(--fg2); border-bottom:1px solid var(--fg2); padding:.25em .4em}
+.paleta td{border-bottom:1px solid var(--line); padding:.26em .4em; vertical-align:middle}
+.paleta .m{width:1.05em; height:1.05em; border-radius:3px; border:1px solid var(--line);
+  display:inline-block; vertical-align:-.18em}
+.paleta .hex{font-family:var(--mono); font-size:.66rem}
+.paleta .rol{font-weight:700}
 
-/* --- Estilo 7: cuadros --- */
-table{
-  border-collapse:collapse; width:100%; max-width:100%; margin:.3em 0 .4em;
-  font-size:.9rem;
-}
-thead th{
-  text-align:left; font-family:var(--sans); font-weight:700; font-size:.74rem;
-  letter-spacing:.05em; text-transform:uppercase; color:var(--fg2);
-  border-bottom:1.5px solid var(--fg2); padding:.5em .7em;
-}
-td{border-bottom:1px solid var(--line); padding:.55em .7em; vertical-align:top}
-tbody tr:last-child td{border-bottom:1.5px solid var(--fg2)}
-/* --- Estilo 8: cifra / token --- */
-.mono,td.mono,code{font-family:var(--mono); font-size:.82em}
-td.mono{white-space:nowrap}
+.tipos{width:100%; border-collapse:collapse; font-size:.7rem; margin-bottom:.7em}
+.tipos td{border-bottom:1px solid var(--line); padding:.26em .4em}
+.tipos td:first-child{font-weight:700; white-space:nowrap}
+.tipos .uso{color:var(--fg2)}
+.escala{font-family:var(--mono); font-size:.66rem; color:var(--fg2); line-height:1.75}
+.escala b{color:var(--fg); font-family:var(--sans); font-size:.68rem}
 
-/* Figuras compuestas con CSS */
-.fig{margin:1.7em 0 .4em}
-.barra{display:flex; height:34px; border-radius:5px; overflow:hidden; font-size:.72rem;
-  font-weight:700; color:#fff; max-width:100%}
+.barra{display:flex; height:20px; border-radius:4px; overflow:hidden; font-size:.58rem;
+  font-weight:700; color:#fff}
 .barra span{display:flex; align-items:center; justify-content:center; white-space:nowrap}
-.leyenda{display:flex; gap:1.6em; flex-wrap:wrap; margin:.7em 0 0; font-size:.82rem; color:var(--fg2)}
-.leyenda span{display:flex; align-items:center; gap:.45em}
-.leyenda i{width:12px; height:12px; border-radius:3px; display:inline-block; flex:none}
-.swatches{display:grid; grid-template-columns:repeat(auto-fill,minmax(150px,1fr)); gap:12px}
-.sw{border:1px solid var(--line); border-radius:6px; overflow:hidden; background:var(--surf)}
-.sw .muestra{height:56px}
-.sw .txt{padding:.5em .6em}
-.sw .rol{font-weight:700; font-size:.82rem}
-.sw .hex{font-family:var(--mono); font-size:.74rem; color:var(--fg2)}
-.escala > div{border-bottom:1px solid var(--line); padding:.35em 0; display:flex; align-items:baseline; gap:1em}
-.escala .et{font-family:var(--mono); font-size:.7rem; color:var(--fg2); width:5.5em; flex:none}
+.leyenda{display:flex; gap:1em; flex-wrap:wrap; margin:.45em 0 0; font-size:.64rem; color:var(--fg2)}
+.leyenda span{display:flex; align-items:center; gap:.35em}
+.leyenda i{width:9px; height:9px; border-radius:2px; display:inline-block; flex:none}
 
-/* Firma nominal */
-.firma-demo{border:1px solid var(--line); border-radius:8px; padding:28px 32px; background:var(--surf);
-  display:inline-block; margin:1.4em 0 .4em}
-.firma-nom{font-family:var(--serif); font-weight:600; font-size:2rem; line-height:1; color:var(--fg)}
-.firma-rol{font-family:var(--sans); font-weight:700; font-size:.72rem; letter-spacing:.28em;
-  text-transform:uppercase; color:var(--sig); margin-top:.5em}
+.reglas{margin:0; padding-left:1.1em; font-size:.7rem}
+.reglas li{margin:.28em 0}
+.reglas strong{color:var(--fg)}
 
-/* Uso correcto / incorrecto */
-.usos{display:grid; grid-template-columns:1fr 1fr; gap:16px; margin:1.7em 0 .4em}
-.uso{border:1px solid var(--line); border-radius:6px; padding:.9em 1em; font-size:.9rem}
-.uso .marca{font-weight:700; font-size:.74rem; letter-spacing:.05em; text-transform:uppercase; margin-bottom:.4em}
-.uso.si .marca{color:var(--pri2)} .uso.no .marca{color:var(--sig)}
+.contraste{width:100%; border-collapse:collapse; font-size:.7rem}
+.contraste td{border-bottom:1px solid var(--line); padding:.26em .4em}
+.contraste .n{font-family:var(--mono); text-align:right; white-space:nowrap}
 
-/* Portada */
-.portada{display:flex; flex-direction:column}
-.portada .nombre{font-family:var(--serif); font-weight:600; font-size:3.4rem; line-height:1; letter-spacing:-.015em}
-.portada .rol{font-family:var(--sans); font-weight:700; font-size:.86rem; letter-spacing:.32em;
-  text-transform:uppercase; color:var(--sig); margin:1.1em 0 0}
-.portada .subt{font-family:var(--serif); font-style:italic; font-weight:400; font-size:1.35rem;
-  color:var(--fg2); margin:2.4em 0 0}
-.portada .meta{padding-top:3em; font-size:.86rem; color:var(--fg2);
-  display:flex; gap:2.5em; flex-wrap:wrap; font-family:var(--mono)}
-.portada .meta b{color:var(--fg); font-weight:700; display:block; font-family:var(--sans); font-size:.7rem;
-  letter-spacing:.06em; text-transform:uppercase}
-.regla-color{height:6px; background:var(--pri); border-radius:3px; margin:1.6em 0; max-width:120px;
-  position:relative}
-.regla-color::after{content:""; position:absolute; right:0; top:0; height:6px; width:24px;
-  background:var(--sig); border-radius:0 3px 3px 0}
+.firma{border:1px solid var(--line); background:var(--surf); border-radius:6px;
+  padding:.9em 1.1em; display:inline-block}
+.firma .n{font-family:var(--serif); font-weight:600; font-size:1.35rem; line-height:1; color:var(--fg)}
+.firma .r{font-family:var(--sans); font-weight:700; font-size:.58rem; letter-spacing:.24em;
+  text-transform:uppercase; color:var(--sig); margin-top:.45em}
 
-/* Indice */
-.indice{list-style:none; padding:0}
-.indice li{border-bottom:1px solid var(--line); padding:.5em 0; margin:0}
-.indice a{display:flex; align-items:baseline; gap:.55em; color:var(--fg); text-decoration:none}
-.indice .n{color:var(--pri2); font-family:var(--mono); font-size:.8rem; flex:none; width:2.2em}
-.indice .t{flex:0 1 auto}
-.indice a.sub{color:var(--fg2); font-size:.9rem; padding:.3em 0 0 2.75em}
-.indice a.sub .n{width:3em; font-size:.72rem}
-.indice .dots{flex:1 1 auto}
-.indice .pg{font-family:var(--mono); font-size:.8rem; color:var(--fg2); flex:none}
+.pie{grid-column:1 / -1; border-top:1px solid var(--line); margin-top:.5em; padding-top:.6em;
+  font-size:.64rem; color:var(--fg2)}
 
-/* Barra de tema, solo pantalla */
 .tema{position:fixed; top:14px; right:14px; z-index:9; font-family:var(--sans); font-size:.8rem;
   background:var(--surf); color:var(--fg); border:1px solid var(--line); border-radius:20px;
   padding:.4em .9em; cursor:pointer}
 
-/* ====== PANTALLA ====== */
-@media screen{
-  .portada{padding:4vh 0 3.5em; border-bottom:1px solid var(--line); margin-bottom:3em}
-  .portada .meta{margin-top:3em}
-  .indice .pg,.indice .dots{display:none}
-}
-
-/* ====== IMPRESION ====== */
 @media print{
-  .portada .meta{margin-top:auto}
-  @page{
-    size:A4; margin:20mm 22mm 17mm;
-    @top-left{content:"Ignacia Fuentes"; font-family:'Nunito Sans',sans-serif; font-size:8pt; color:#9a8f80; vertical-align:bottom; padding-bottom:3pt; border-bottom:0.75pt solid #dbd0be}
-    @top-center{content:" "; border-bottom:0.75pt solid #dbd0be}
-    @top-right{content:"Manual de identidad"; font-family:'Nunito Sans',sans-serif; font-size:8pt; color:#9a8f80; vertical-align:bottom; padding-bottom:3pt; border-bottom:0.75pt solid #dbd0be}
-    @bottom-left{content:"Versión 1.0 · julio de 2026"; font-family:'Nunito Sans',sans-serif; font-size:8pt; color:#9a8f80; vertical-align:top; padding-top:3pt; border-top:0.75pt solid #dbd0be}
-    @bottom-center{content:" "; border-top:0.75pt solid #dbd0be}
-    @bottom-right{content:counter(page); font-family:'Space Mono',monospace; font-size:8pt; color:#9a8f80; vertical-align:top; padding-top:3pt; border-top:0.75pt solid #dbd0be}
-  }
-  @page:first{
-    @top-left{content:""; border:none} @top-center{content:""; border:none} @top-right{content:""; border:none}
-    @bottom-left{content:""; border:none} @bottom-center{content:""; border:none} @bottom-right{content:""; border:none}
-  }
-  :root{--bg:#fff}
-  html,body{background:#fff}
+  @page{size:A4; margin:12mm; background:var(--bg)}
+  /* La ficha imprime en la versión activa, no forzada a blanco: es una pieza de
+     pantalla que además se imprime. print-color-adjust obliga al navegador a no
+     descartar el fondo, que si no sale papel blanco con texto claro encima. */
+  html,body{background:var(--bg); -webkit-print-color-adjust:exact; print-color-adjust:exact}
   .tema{display:none}
-  .hoja{max-width:none; margin:0; padding:0; font-size:10.5pt}
-  h1.sec{break-before:page; break-after:avoid; padding-top:6mm}
-  h2.sub{break-after:avoid}
-  .portada{break-after:page; min-height:0; height:calc(297mm - 40mm)}
-  h1.sec.no-break{break-before:auto}
-  table,.fig,.firma-demo,.nota,.usos{break-inside:avoid}
-  .pie,.etiqueta.abajo{break-before:avoid}
-  .etiqueta{break-after:avoid}   /* a label never separates from what it labels */
-  p,li{orphans:2; widows:2}
+  .ficha{max-width:none; margin:0; padding:0; font-size:8.5pt}
+  .rejilla{gap:10px 14px}
+  .bloque,.firma,table{break-inside:avoid}
 }
+@media screen{ .rejilla{gap:22px 24px} }
+@media screen and (max-width:640px){ .rejilla{grid-template-columns:1fr} }
 </style>
 </head>
 <body>
 <button class="tema" onclick="var r=document.documentElement;r.dataset.theme=r.dataset.theme==='dark'?'light':'dark'">Cambiar tema</button>
-<div class="hoja">
+<div class="ficha">
 
-<!-- PORTADA -->
-<section class="portada">
-  <div class="nombre">Ignacia Fuentes</div>
-  <div class="rol">Nutricionista</div>
-  <div class="regla-color"></div>
-  <div class="subt">Manual de identidad de marca personal</div>
-  <div class="meta">
-    <div><b>Versión</b>1.0</div>
-    <div><b>Fecha</b>julio de 2026</div>
-    <div><b>Estado</b>Vigente</div>
-    <div><b>Revisión</b>julio de 2027</div>
+<header class="cab">
+  <div>
+    <div class="nombre">Ignacia Fuentes</div>
+    <div class="rol">Nutricionista</div>
   </div>
-</section>
+  <div class="meta">Ficha de identidad<br>Versión 1.0 · julio de 2026</div>
+</header>
 
-<!-- INDICE -->
-<h1 class="sec no-break">Índice</h1>
-<ol class="indice">
-  <li><a href="#s1"><span class="n">1</span><span class="t">Introducción</span><span class="dots"></span><span class="pg">3</span></a></li>
-  <li><a href="#s2"><span class="n">2</span><span class="t">Esencia</span><span class="dots"></span><span class="pg">4</span></a></li>
-  <li>
-    <a href="#s3"><span class="n">3</span><span class="t">Propósito y personalidad</span><span class="dots"></span><span class="pg">5</span></a>
-    <a class="sub" href="#s3-1"><span class="n">3.1</span><span class="t">Propósito</span><span class="dots"></span><span class="pg">5</span></a>
-    <a class="sub" href="#s3-2"><span class="n">3.2</span><span class="t">Personalidad</span><span class="dots"></span><span class="pg">5</span></a>
-  </li>
-  <li>
-    <a href="#s4"><span class="n">4</span><span class="t">Valores y tono</span><span class="dots"></span><span class="pg">6</span></a>
-    <a class="sub" href="#s4-1"><span class="n">4.1</span><span class="t">Valores</span><span class="dots"></span><span class="pg">6</span></a>
-    <a class="sub" href="#s4-2"><span class="n">4.2</span><span class="t">Tono</span><span class="dots"></span><span class="pg">6</span></a>
-  </li>
-  <li><a href="#s5"><span class="n">5</span><span class="t">Sistema de color y roles</span><span class="dots"></span><span class="pg">7</span></a></li>
-  <li><a href="#s6"><span class="n">6</span><span class="t">Tipografía</span><span class="dots"></span><span class="pg">8</span></a></li>
-  <li>
-    <a href="#s7"><span class="n">7</span><span class="t">Firma</span><span class="dots"></span><span class="pg">9</span></a>
-    <a class="sub" href="#s7-1"><span class="n">7.1</span><span class="t">Reglas</span><span class="dots"></span><span class="pg">9</span></a>
-  </li>
-  <li>
-    <a href="#s8"><span class="n">8</span><span class="t">Elementos gráficos y composición</span><span class="dots"></span><span class="pg">10</span></a>
-    <a class="sub" href="#s8-1"><span class="n">8.1</span><span class="t">Retícula y aire</span><span class="dots"></span><span class="pg">10</span></a>
-    <a class="sub" href="#s8-2"><span class="n">8.2</span><span class="t">Cuadros y figuras</span><span class="dots"></span><span class="pg">10</span></a>
-    <a class="sub" href="#s8-3"><span class="n">8.3</span><span class="t">Formato de página</span><span class="dots"></span><span class="pg">10</span></a>
-  </li>
-  <li><a href="#s9"><span class="n">9</span><span class="t">Recomendaciones de uso</span><span class="dots"></span><span class="pg">11</span></a></li>
-  <li><a href="#sa"><span class="n">A</span><span class="t">Ficha técnica</span><span class="dots"></span><span class="pg">12</span></a></li>
-  <li><a href="#sb"><span class="n">B</span><span class="t">Procedencia de tipografías</span><span class="dots"></span><span class="pg">13</span></a></li>
-</ol>
+<div class="rejilla">
 
-<!-- 1 -->
-<h1 class="sec" id="s1"><span class="num">1</span>Introducción</h1>
-<p class="lead">Este manual fija cómo se ve y cómo suena todo lo que hago a mi nombre, para no volver a decidirlo cada vez.</p>
-<p>Trabajo en nutrición desde dos lugares: la consulta, uno a uno, y la divulgación, en redes y charlas. Ese doble frente me obliga a ser reconocible. Una publicación, la ficha que le entrego a un paciente y la diapositiva de una charla tienen que leerse como de la misma persona, aunque las haga en semanas distintas y con herramientas distintas.</p>
-<p>Acá están las reglas que lo sostienen: el color, la tipografía, la firma, la manera de componer y el tono con que escribo. No es un documento para archivar. Es la fuente que consulto cuando dudo si algo es coherente con mi marca.</p>
-<p><strong>Cómo se lee.</strong> Las secciones 2 a 4 son el fundamento: quién soy y cómo hablo. Las secciones 5 a 8 son el sistema visual. La 9 resume el uso diario. El Anexo A junta todos los valores en una ficha. Ante cualquier duda, manda esa ficha.</p>
+  <section class="bloque">
+    <div class="rotulo">Color</div>
+    <table class="paleta">
+      <thead><tr><th>Rol</th><th>Clara</th><th>Oscura</th></tr></thead>
+      <tbody>
+        <tr><td class="rol">Fondo · crema</td>
+            <td><span class="m" style="background:#FAF6EF"></span> <span class="hex">#FAF6EF</span></td>
+            <td><span class="m" style="background:#211D19"></span> <span class="hex">#211D19</span></td></tr>
+        <tr><td class="rol">Superficie</td>
+            <td><span class="m" style="background:#F1E9DB"></span> <span class="hex">#F1E9DB</span></td>
+            <td><span class="m" style="background:#2B2621"></span> <span class="hex">#2B2621</span></td></tr>
+        <tr><td class="rol">Texto</td>
+            <td><span class="m" style="background:#2A2622"></span> <span class="hex">#2A2622</span></td>
+            <td><span class="m" style="background:#F0E9DD"></span> <span class="hex">#F0E9DD</span></td></tr>
+        <tr><td class="rol">Texto secundario</td>
+            <td><span class="m" style="background:#6E6459"></span> <span class="hex">#6E6459</span></td>
+            <td><span class="m" style="background:#B7AB9B"></span> <span class="hex">#B7AB9B</span></td></tr>
+        <tr><td class="rol">Verde · primario</td>
+            <td><span class="m" style="background:#3C6E54"></span> <span class="hex">#3C6E54</span></td>
+            <td><span class="m" style="background:#7FB894"></span> <span class="hex">#7FB894</span></td></tr>
+        <tr><td class="rol">Terracota · señal</td>
+            <td><span class="m" style="background:#AA4C2C"></span> <span class="hex">#AA4C2C</span></td>
+            <td><span class="m" style="background:#DE8B66"></span> <span class="hex">#DE8B66</span></td></tr>
+        <tr><td class="rol">Filete</td>
+            <td><span class="m" style="background:#E5DBCB"></span> <span class="hex">#E5DBCB</span></td>
+            <td><span class="m" style="background:#3A332C"></span> <span class="hex">#3A332C</span></td></tr>
+      </tbody>
+    </table>
+  </section>
 
-<!-- 2 -->
-<h1 class="sec" id="s2"><span class="num">2</span>Esencia</h1>
-<p class="lead">Convierto la evidencia nutricional en cambios de hábito que la gente sí sostiene, no en dietas que se abandonan.</p>
-<p>Esa frase es el centro. Si le quito todo lo demás (el rubro, el tono, los colores), sigue siendo cierta. Mi trabajo no es prescribir una dieta perfecta sobre el papel, sino acompañar un cambio que aguante el día a día real de una persona: su tiempo, su presupuesto, su cocina.</p>
-<div class="nota"><strong>Prueba de coherencia.</strong> Antes de publicar algo me pregunto si sirve a esa esencia. Un consejo que suena bien pero que nadie puede sostener una semana no pasa la prueba.</div>
+  <section class="bloque">
+    <div class="rotulo">Tipografía</div>
+    <table class="tipos">
+      <tr><td>Fraunces</td><td class="uso">Títulos y firma, 600</td></tr>
+      <tr><td>Nunito Sans</td><td class="uso">Cuerpo y cuadros, 400 / 700</td></tr>
+      <tr><td>Space Mono</td><td class="uso">Cifras y tokens, 400 / 700</td></tr>
+    </table>
+    <div class="escala">
+      <b>Escala</b> 2,1 · 1,2 · 1 · 0,72 rem<br>
+      <b>Tope de estilos</b> nueve<br>
+      <b>Interlineado</b> 1,6 en cuerpo<br>
+      <b>Licencia</b> las tres OFL
+    </div>
+  </section>
 
-<!-- 3 -->
-<h1 class="sec" id="s3"><span class="num">3</span>Propósito y personalidad</h1>
-<h2 class="sub" id="s3-1"><span class="subnum">3.1</span>Propósito</h2>
-<p>Acortar la distancia entre lo que la ciencia de la nutrición ya sabe y lo que una persona hace en su cocina cada día. Hay mucho conocimiento firme que no llega, o llega deformado por la moda. Mi trabajo es ese puente.</p>
-<h2 class="sub" id="s3-2"><span class="subnum">3.2</span>Personalidad</h2>
-<p>Mi carácter se define eligiendo un lado, no quedándome en el medio de todo. Estas son las posiciones que marcan cómo me comporto:</p>
-<div class="etiqueta">Cuadro 1 · Posiciones de carácter</div>
-<table>
-  <thead><tr><th>Más</th><th>Que</th><th>Se nota en</th></tr></thead>
-  <tbody>
-    <tr><td>Cercana</td><td>distante</td><td>Tuteo, ejemplos de la vida diaria.</td></tr>
-    <tr><td>Divulgativa</td><td>técnica</td><td>Explico primero, el término después.</td></tr>
-    <tr><td>Cálida</td><td>sobria</td><td>Sin culpa ni reto; acompaño, no regaño.</td></tr>
-    <tr><td>Categórica con evidencia</td><td>categórica siempre</td><td>Afirmo fuerte donde hay respaldo; con la moda, soy cauta.</td></tr>
-  </tbody>
-</table>
-<p class="pie">Elegir un lado no borra el otro: en una charla para colegas subo el registro técnico. Pero el eje por defecto es este.</p>
+  <section class="bloque">
+    <div class="rotulo">Proporción de uso</div>
+    <div class="barra">
+      <span style="background:#6E6459; flex:0 0 90%">90 % neutros</span>
+      <span style="background:#3C6E54; flex:0 0 8%">8 %</span>
+      <span style="background:#AA4C2C; flex:0 0 2%"></span>
+    </div>
+    <div class="leyenda">
+      <span><i style="background:#6E6459"></i>neutros</span>
+      <span><i style="background:#3C6E54"></i>verde</span>
+      <span><i style="background:#AA4C2C"></i>terracota</span>
+    </div>
+    <p style="font-size:.64rem;color:var(--fg2);margin:.5em 0 0">En una pieza que cabe de una
+    mirada el verde sube hasta cerca de un cuarto. La terracota no sube nunca.</p>
+  </section>
 
-<!-- 4 -->
-<h1 class="sec" id="s4"><span class="num">4</span>Valores y tono</h1>
-<h2 class="sub" id="s4-1"><span class="subnum">4.1</span>Valores</h2>
-<ul>
-  <li><strong>Evidencia antes que moda.</strong> Lo que digo se apoya en datos, no en lo que está de tendencia.</li>
-  <li><strong>Cercanía.</strong> Le hablo a la persona, no a un caso clínico.</li>
-  <li><strong>Sin culpa.</strong> La comida no es premio ni castigo, y mi comunicación tampoco.</li>
-  <li><strong>Honestidad.</strong> No prometo lo que no puedo sostener: los cambios reales toman tiempo.</li>
-</ul>
-<h2 class="sub" id="s4-2"><span class="subnum">4.2</span>Tono</h2>
-<p>Escribo cálido y claro, sin alarmismo. Tuteo, uso ejemplos cotidianos y no prometo milagros. Reglas mínimas:</p>
-<div class="usos">
-  <div class="uso si"><div class="marca">Así suena</div>«Si te da hambre a media tarde, ten a mano fruta o un puñado de nueces. No tienes que aguantar.»</div>
-  <div class="uso no"><div class="marca">Así no</div>«Elimina URGENTE estos 5 alimentos tóxicos que están saboteando tu metabolismo.»</div>
+  <section class="bloque">
+    <div class="rotulo">Firma</div>
+    <div class="firma">
+      <div class="n">Ignacia Fuentes</div>
+      <div class="r">Nutricionista</div>
+    </div>
+    <p style="font-size:.64rem;color:var(--fg2);margin:.5em 0 0">No hay logotipo: la marca es el
+    nombre compuesto. Resguardo de una altura de x alrededor; no se redibuja ni se encierra.</p>
+  </section>
+
+  <section class="bloque ancho">
+    <div class="rotulo">Las que más se rompen</div>
+    <ul class="reglas">
+      <li><strong>La terracota marca, no decora.</strong> Etiquetas de cuadro y figura, y un solo dato por pieza. Nunca para numerar ni para viñetas.</li>
+      <li><strong>La numeración va en verde.</strong> Secciones, subsecciones e índice, en el primario.</li>
+      <li><strong>Una sola medida de columna.</strong> Párrafos, cuadros y figuras al mismo ancho, justificados y con partición.</li>
+      <li><strong>Nada se apoya solo en el color.</strong> Un dato en terracota lleva además texto o forma que lo diga.</li>
+    </ul>
+  </section>
+
+  <section class="bloque ancho">
+    <div class="rotulo">Contraste verificado · WCAG 2.1</div>
+    <table class="contraste">
+      <tr><td>Texto sobre crema</td><td class="n">13,94 : 1</td>
+          <td>Primario sobre crema</td><td class="n">5,49 : 1</td></tr>
+      <tr><td>Señal sobre crema</td><td class="n">5,16 : 1</td>
+          <td>Blanco sobre primario</td><td class="n">5,91 : 1</td></tr>
+    </table>
+  </section>
+
+  <div class="pie">El manual zanja lo que esta ficha no alcanza · manual-ignacia.pdf · Versión 1.0</div>
+
 </div>
-<div class="etiqueta abajo">Figura 1 · El tono en dos ejemplos</div>
-<p class="pie">La izquierda acompaña y da una salida concreta. La derecha alarma y promete un enemigo. Ese registro no es el mío.</p>
-
-<!-- 5 -->
-<h1 class="sec" id="s5"><span class="num">5</span>Sistema de color y roles</h1>
-<p class="lead">Cálido y claro, sin el rosa ni el neón de la industria de las dietas, y sin la frialdad de lo clínico. Transmite comida real y confianza.</p>
-<p>La calidez empieza en el fondo, no en el acento: el papel es crema, no blanco puro. Sobre él, un verde hoja maduro lleva el peso y una terracota marca lo que hay que mirar.</p>
-
-<div class="fig swatches">
-  <div class="sw"><div class="muestra" style="background:#FAF6EF"></div><div class="txt"><div class="rol">Crema · fondo</div><div class="hex">#FAF6EF</div></div></div>
-  <div class="sw"><div class="muestra" style="background:#F1E9DB"></div><div class="txt"><div class="rol">Superficie</div><div class="hex">#F1E9DB</div></div></div>
-  <div class="sw"><div class="muestra" style="background:#2A2622"></div><div class="txt"><div class="rol">Texto</div><div class="hex">#2A2622</div></div></div>
-  <div class="sw"><div class="muestra" style="background:#3C6E54"></div><div class="txt"><div class="rol">Primario · verde</div><div class="hex">#3C6E54</div></div></div>
-  <div class="sw"><div class="muestra" style="background:#AA4C2C"></div><div class="txt"><div class="rol">Señal · terracota</div><div class="hex">#AA4C2C</div></div></div>
-  <div class="sw"><div class="muestra" style="background:#6E6459"></div><div class="txt"><div class="rol">Texto secundario</div><div class="hex">#6E6459</div></div></div>
-</div>
-<div class="etiqueta abajo">Figura 2 · Paleta y roles</div>
-
-<div class="fig">
-  <div class="barra">
-    <span style="background:#6E6459; flex:0 0 90%">90 % neutros</span>
-    <span style="background:#3C6E54; flex:0 0 8%">8 %</span>
-    <span style="background:#AA4C2C; flex:0 0 2%"></span>
-  </div>
-  <div class="leyenda">
-    <span><i style="background:#6E6459"></i>90 % neutros</span>
-    <span><i style="background:#3C6E54"></i>8 % primario</span>
-    <span><i style="background:#AA4C2C"></i>2 % señal</span>
-  </div>
-</div>
-<div class="etiqueta abajo">Figura 3 · Proporción de uso</div>
-<p class="pie">Neutros dominan. El verde estructura. La terracota es señal, no relleno. Si la señal empieza a decorar, se rompe el sistema.</p>
-
-<div class="etiqueta">Cuadro 2 · Contraste verificado (WCAG 2.1)</div>
-<table>
-  <thead><tr><th>Par</th><th>Uso</th><th>Ratio</th><th>Nivel</th></tr></thead>
-  <tbody>
-    <tr><td>Texto sobre crema</td><td>Cuerpo</td><td class="mono">13,94</td><td>AAA</td></tr>
-    <tr><td>Primario sobre crema</td><td>Títulos, enlaces</td><td class="mono">5,49</td><td>AA</td></tr>
-    <tr><td>Señal sobre crema</td><td>Etiquetas</td><td class="mono">5,16</td><td>AA</td></tr>
-    <tr><td>Blanco sobre primario</td><td>Botones, barras</td><td class="mono">5,91</td><td>AA</td></tr>
-  </tbody>
-</table>
-<p class="pie">Ningún dato se apoya solo en el color: la señal siempre va con texto o forma, para quien no distingue el rojo del verde.</p>
-
-<!-- 6 -->
-<h1 class="sec" id="s6"><span class="num">6</span>Tipografía</h1>
-<p class="lead">Una serif con carácter para los títulos y una sans humanista para leer. Ambas de licencia libre, para incrustarlas sin permiso ni costo.</p>
-<div class="etiqueta">Cuadro 3 · Familias y usos</div>
-<table>
-  <thead><tr><th>Familia</th><th>Uso</th><th>Licencia</th></tr></thead>
-  <tbody>
-    <tr><td><strong>Fraunces</strong></td><td>Títulos, firma, citas</td><td class="mono">OFL</td></tr>
-    <tr><td><strong>Nunito Sans</strong></td><td>Cuerpo, cuadros, apoyos</td><td class="mono">OFL</td></tr>
-    <tr><td><strong>Space Mono</strong></td><td>Cifras, tokens, tablas de aporte</td><td class="mono">OFL</td></tr>
-  </tbody>
-</table>
-<div class="fig escala">
-  <div><span class="et">2,1 rem</span><span style="font-family:var(--serif);font-weight:600;font-size:2.1rem">Título de sección</span></div>
-  <div><span class="et">1,2 rem</span><span style="font-size:1.2rem;color:var(--fg2)">Entradilla que abre</span></div>
-  <div><span class="et">1 rem</span><span style="font-size:1rem">Cuerpo de lectura</span></div>
-  <div><span class="et">0,72 rem</span><span style="font-weight:700;font-size:.72rem;letter-spacing:.09em;text-transform:uppercase;color:var(--sig)">Etiqueta</span></div>
-  <div><span class="et">mono</span><span style="font-family:var(--mono);font-size:.9rem">128 kcal · 12,4 g</span></div>
-</div>
-<div class="etiqueta abajo">Figura 4 · Escala tipográfica</div>
-<p class="pie">Nueve estilos como tope. Cada uno tiene un trabajo. Un décimo por capricho rompe la jerarquía.</p>
-
-<!-- 7 -->
-<h1 class="sec" id="s7"><span class="num">7</span>Firma</h1>
-<p class="lead">La marca no es un símbolo dibujado: es mi nombre, compuesto con tipografía. No hay logotipo.</p>
-<p>Mi nombre en Fraunces, con el rol debajo en Nunito Sans en mayúsculas espaciadas. Esa es la firma. No se reemplaza por un ícono ni por un monograma.</p>
-<div class="firma-demo">
-  <div class="firma-nom">Ignacia Fuentes</div>
-  <div class="firma-rol">Nutricionista</div>
-</div>
-<div class="etiqueta abajo">Figura 5 · La firma nominal</div>
-<h2 class="sub" id="s7-1"><span class="subnum">7.1</span>Reglas</h2>
-<ul>
-  <li><strong>Espacio de resguardo.</strong> Deja alrededor, como mínimo, la altura de la inicial mayúscula.</li>
-  <li><strong>Tamaño mínimo.</strong> El nombre no baja de 16 px en pantalla ni de 5 mm impreso, para que el rol siga siendo legible.</li>
-  <li><strong>Color.</strong> El nombre va en texto; el rol, en terracota o en texto según el fondo. Nunca el nombre en terracota.</li>
-</ul>
-<div class="usos">
-  <div class="uso si"><div class="marca">Correcto</div>Nombre en Fraunces, rol espaciado debajo, sobre crema o superficie.</div>
-  <div class="uso no"><div class="marca">Incorrecto</div>Deformar la proporción, teñir el nombre de terracota o sustituirlo por un ícono.</div>
-</div>
-<div class="etiqueta abajo">Figura 6 · Uso correcto e incorrecto</div>
-<p class="pie">La firma es nominal por decisión: mi cara y mi nombre son la marca, no un dibujo.</p>
-
-<!-- 8 -->
-<h1 class="sec" id="s8"><span class="num">8</span>Elementos gráficos y composición</h1>
-<h2 class="sub" id="s8-1"><span class="subnum">8.1</span>Retícula y aire</h2>
-<p>Una columna, márgenes generosos, espacio en blanco que deja respirar. La lectura cómoda es parte del tono cálido: un texto apretado contradice lo que digo.</p>
-<h2 class="sub" id="s8-2"><span class="subnum">8.2</span>Cuadros y figuras</h2>
-<p>Los cuadros van sin líneas verticales, con filete fino horizontal. Cada uno se anuncia con su etiqueta en terracota y se cierra con un pie que explica qué mirar. Las figuras se componen con los colores del sistema, nunca con una paleta ajena.</p>
-<h2 class="sub" id="s8-3"><span class="subnum">8.3</span>Formato de página</h2>
-<p>En pantalla el manual es continuo. Al imprimirlo a PDF aparece paginado: numeración abajo, mi nombre y el título del manual arriba, versión y fecha al pie, y cada sección abre en página nueva. Ese formato lo aplica el navegador al imprimir; no hay que hacer nada.</p>
-<div class="nota"><strong>Impresión.</strong> Imprime desde un navegador Chromium (Chrome o Edge), con «Gráficos de fondo» activado, para que el crema y los colores salgan en el PDF.</div>
-
-<!-- 9 -->
-<h1 class="sec" id="s9"><span class="num">9</span>Recomendaciones de uso</h1>
-<ul>
-  <li><strong>Redes.</strong> Fondo crema o superficie, título en Fraunces, un solo dato en terracota por pieza. Nada de alarmismo en el copy.</li>
-  <li><strong>Consulta.</strong> Fichas y pautas en Nunito Sans, cifras de aporte en Space Mono, tono de acompañamiento.</li>
-  <li><strong>Charlas.</strong> Se puede subir el registro técnico, pero el color y la tipografía no cambian.</li>
-  <li><strong>Lo que no se hace.</strong> Prometer resultados rápidos, usar la terracota para decorar, sumar una tipografía fuera de las tres.</li>
-</ul>
-
-<!-- ANEXOS -->
-<h1 class="sec" id="sa">Anexo A · Ficha técnica</h1>
-<div class="etiqueta">Cuadro 4 · Tokens de color</div>
-<table>
-  <thead><tr><th>Rol</th><th>Claro</th><th>Oscuro</th></tr></thead>
-  <tbody>
-    <tr><td>Fondo</td><td class="mono">#FAF6EF</td><td class="mono">#211D19</td></tr>
-    <tr><td>Superficie</td><td class="mono">#F1E9DB</td><td class="mono">#2B2621</td></tr>
-    <tr><td>Texto</td><td class="mono">#2A2622</td><td class="mono">#F0E9DD</td></tr>
-    <tr><td>Texto secundario</td><td class="mono">#6E6459</td><td class="mono">#B7AB9B</td></tr>
-    <tr><td>Primario</td><td class="mono">#3C6E54</td><td class="mono">#7FB894</td></tr>
-    <tr><td>Señal</td><td class="mono">#AA4C2C</td><td class="mono">#DE8B66</td></tr>
-    <tr><td>Filete</td><td class="mono">#E5DBCB</td><td class="mono">#3A332C</td></tr>
-  </tbody>
-</table>
-<div class="etiqueta">Cuadro 5 · Tokens de tipografía</div>
-<table>
-  <thead><tr><th>Token</th><th>Valor</th></tr></thead>
-  <tbody>
-    <tr><td>Serif (títulos)</td><td class="mono">Fraunces, 600</td></tr>
-    <tr><td>Sans (cuerpo)</td><td class="mono">Nunito Sans, 400 / 700</td></tr>
-    <tr><td>Mono (cifras)</td><td class="mono">Space Mono, 400 / 700</td></tr>
-    <tr><td>Escala</td><td class="mono">2,1 · 1,2 · 1 · 0,72 rem</td></tr>
-    <tr><td>Proporción color</td><td class="mono">90 / 8 / 2</td></tr>
-  </tbody>
-</table>
-
-<h1 class="sec" id="sb">Anexo B · Procedencia de tipografías</h1>
-<p>Las tres familias son de licencia libre <span class="mono">SIL Open Font License 1.1</span>, lo que permite incrustarlas en este documento y reutilizarlas sin costo ni permiso.</p>
-<ul>
-  <li><strong>Fraunces</strong>, de Undercase Type. Serif de contraste alto con eje óptico.</li>
-  <li><strong>Nunito Sans</strong>, de Vernon Adams y Jacques Le Bailly. Sans humanista redondeada.</li>
-  <li><strong>Space Mono</strong>, de Colophon Foundry para Google. Monoespaciada de carácter.</li>
-</ul>
-<p class="pie">Este manual es un caso de muestra ficticio, construido para demostrar el método de la skill «Identidad Personal». Ignacia Fuentes no es una persona real.</p>
-
 </div>
 </body>
 </html>

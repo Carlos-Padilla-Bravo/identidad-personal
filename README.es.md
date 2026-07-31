@@ -21,6 +21,7 @@ Sirve a quien produce trabajo a su nombre y quiere que se vea y suene consistent
 - Conduce el proceso de construir tu manual de identidad de marca personal: qué preguntar, en qué orden, qué decidir antes de avanzar y cuándo parar a consultar.
 - Te hace tomar las decisiones de diseño con criterio, no eligiendo de un menú: dirección de color, tipografía, jerarquía, firma o logotipo, composición.
 - Entrega el manual terminado en HTML autocontenido, listo para imprimir a PDF paginado desde un navegador Chromium.
+- Entrega además una **ficha de identidad de una hoja**: la paleta, la tipografía, la firma y las reglas que más se rompen, en una sola página. Es la que tienes abierta mientras trabajas y la que le pasas a quien produzca algo con tu marca. El manual zanja las discusiones; la ficha lleva los valores.
 - Documenta y sistematiza tu logotipo si ya tienes uno, o construye la firma nominal tipográfica si no.
 - Deja los tokens del sistema (colores por rol, escala tipográfica, versión clara y oscura) para que reutilices la identidad en otras piezas.
 
@@ -46,7 +47,7 @@ El recorrido tiene tres momentos:
 
 **Sistema visual: cómo se ve.** Con el fundamento cerrado, la skill construye el color (primero la dirección, después los valores: un neutro dominante, un primario y un color de señal racionado, con el contraste verificado por número), la tipografía (primero el carácter, luego una familia de licencia libre y una jerarquía con tope de estilos), tu firma o tu logotipo según lo que tengas, y la composición. En los puntos caros de revertir, color, tipografía y firma, se detiene a consultarte antes de fijar nada.
 
-**El entregable.** La skill arma el manual como HTML autocontenido de una sola página, con las fuentes incrustadas y sin dependencias externas, en versión clara y oscura. En pantalla se lee continuo; al imprimirlo a PDF desde un navegador Chromium sale paginado, con numeración, encabezado y pie. Cierra con la ficha de tokens (colores por rol, escala tipográfica, familias) para que reutilices la identidad en otras piezas.
+**El entregable.** La skill arma el manual como HTML autocontenido de una sola página, con las fuentes incrustadas y sin dependencias externas, en versión clara y oscura. En pantalla se lee continuo; al imprimirlo a PDF desde un navegador Chromium sale paginado, con numeración, encabezado y pie. Cierra con la ficha de tokens (colores por rol, escala tipográfica, familias) para que reutilices la identidad en otras piezas. Y te entrega la ficha de una hoja: un manual tiene que justificarse y por eso sale largo, pero nadie abre cuarenta páginas para mirar un hexadecimal, así que los valores de todos los días viven en una hoja aparte.
 
 ## 4. Requisitos
 
@@ -80,14 +81,16 @@ El repo incluye dos manuales completos hechos con la skill, uno por cada rama de
 
 ![Tres páginas del manual de Ignacia Fuentes: portada con la firma nominal, sistema de color con la paleta y los contrastes WCAG, y la escala tipográfica.](ejemplo/muestra-ignacia.png)
 
-**Valentina Ortúzar**, arquitecta, de tono preciso y estructural. Su marca es un **logotipo**: un monograma geométrico, así que su manual documenta el módulo de logo (versiones, área de resguardo, tamaño mínimo, usos correctos e incorrectos). Paleta de hormigón casi monocroma con un amarillo de obra de señal, que marca rellenando en vez de teñir el texto, y la familia IBM Plex.
+**Valentina Ortúzar**, arquitecta, de tono preciso y estructural. Su marca es un **logotipo**: un monograma geométrico, así que su manual documenta el módulo de logo (versiones, área de resguardo, tamaño mínimo, usos correctos e incorrectos). Neutros de hormigón cálidos bajo un **azul de plano** frío que estructura y numera, con un amarillo de obra de señal que marca rellenando en vez de teñir el texto, y la familia IBM Plex.
 
 ![Tres páginas del manual de Valentina Ortúzar: portada con el monograma, la sección de logotipo con sus versiones y reglas, y el sistema de color.](ejemplo/muestra-valentina.png)
 
-Los dos parten de tonos opuestos, para mostrar que el sistema saca el carácter de cada persona en vez de imponer uno. Cada manual se abre en cualquier navegador (`.html`) o se lee como PDF de 13 páginas:
+Los dos parten de tonos opuestos, para mostrar que el sistema saca el carácter de cada persona en vez de imponer uno. Cada caso trae el entregable completo: el manual, que se abre en cualquier navegador (`.html`) o se lee como PDF paginado, y su **ficha de identidad de una hoja**.
 
-- Ignacia: [`manual-ignacia.html`](ejemplo/manual-ignacia.html) · [`.pdf`](ejemplo/manual-ignacia.pdf)
-- Valentina: [`manual-valentina.html`](ejemplo/manual-valentina.html) · [`.pdf`](ejemplo/manual-valentina.pdf)
+- Ignacia: manual [`.html`](ejemplo/manual-ignacia.html) · [`.pdf`](ejemplo/manual-ignacia.pdf) de 13 páginas — ficha [`.html`](ejemplo/ficha-ignacia.html) · [`.pdf`](ejemplo/ficha-ignacia.pdf)
+- Valentina: manual [`.html`](ejemplo/manual-valentina.html) · [`.pdf`](ejemplo/manual-valentina.pdf) de 15 páginas — ficha [`.html`](ejemplo/ficha-valentina.html) · [`.pdf`](ejemplo/ficha-valentina.pdf)
+
+Vale la pena leer las dos fichas seguidas: llevan la misma estructura y aun así no se parecen, porque cada una está compuesta con los valores de su dueña. Las dos vienen en versión oscura, que es la decisión que corresponde a una pieza que se consulta en pantalla; el botón de la esquina cambia a clara.
 
 ## 8. Para qué sirve tu manual
 

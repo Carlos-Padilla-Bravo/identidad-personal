@@ -1,0 +1,225 @@
+<!doctype html>
+<html lang="es" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Valentina Ortúzar · Ficha de identidad</title>
+<style>
+/*FONTS*/
+/* Los tokens son los del manual, copiados sin tocar: la ficha no decide nada. */
+:root{
+  --bg:#EBEAE6; --surf:#DEDCD6; --fg:#1A1A18; --fg2:#615F5A;
+  --pri:#1E4B7B; --pri2:#1E4B7B; --sig:#F4C400; --line:#D4D2CB;
+  --sans:'IBM Plex Sans',system-ui,sans-serif;
+  --mono:'IBM Plex Mono','Courier New',monospace;
+}
+:root[data-theme="dark"]{
+  --bg:#1A1A17; --surf:#242320; --fg:#ECEAE3; --fg2:#A4A29B;
+  --pri:#8FB4E0; --pri2:#8FB4E0; --sig:#F4C400; --line:#33322C;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#1A1A17; --surf:#242320; --fg:#ECEAE3; --fg2:#A4A29B;
+    --pri:#8FB4E0; --pri2:#8FB4E0; --sig:#F4C400; --line:#33322C;
+  }
+}
+
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0; background:var(--bg); color:var(--fg);
+  font-family:var(--sans); font-size:15px; line-height:1.45; font-weight:400}
+.ficha{max-width:800px; margin:0 auto; padding:40px 32px 64px}
+
+.cab{display:flex; align-items:flex-end; justify-content:space-between; gap:2em;
+  padding-bottom:.9em; border-bottom:2px solid var(--pri); margin-bottom:1.4em; flex-wrap:wrap}
+.cab .marca{width:44px; height:44px; color:var(--fg); flex:none}
+.cab .id{display:flex; align-items:center; gap:16px}
+.cab .nombre{font-family:var(--sans); font-weight:600; font-size:1.9rem; line-height:1; letter-spacing:-.015em}
+.cab .rol{font-family:var(--sans); font-weight:700; font-size:.62rem; letter-spacing:.28em;
+  text-transform:uppercase; color:var(--fg2); margin-top:.5em}
+.cab .meta{font-family:var(--mono); font-size:.66rem; color:var(--fg2); text-align:right; line-height:1.6}
+
+.rejilla{display:grid; grid-template-columns:1fr 1fr; gap:14px 18px; align-items:start}
+.ancho{grid-column:1 / -1}
+.bloque{break-inside:avoid}
+.rotulo{font-family:var(--sans); font-weight:700; font-size:.6rem; letter-spacing:.09em;
+  text-transform:uppercase; color:var(--fg); margin:0 0 .5em}
+.rotulo::before{content:""; display:inline-block; width:.62em; height:.62em; background:var(--sig);
+  margin-right:.55em; vertical-align:baseline; position:relative; top:.02em}
+
+.paleta{width:100%; border-collapse:collapse; font-size:.7rem}
+.paleta th{text-align:left; font-weight:700; font-size:.58rem; letter-spacing:.05em;
+  text-transform:uppercase; color:var(--fg2); border-bottom:1px solid var(--fg2); padding:.25em .4em}
+.paleta td{border-bottom:1px solid var(--line); padding:.26em .4em; vertical-align:middle}
+.paleta .m{width:1.05em; height:1.05em; border:1px solid var(--line);
+  display:inline-block; vertical-align:-.18em}
+.paleta .hex{font-family:var(--mono); font-size:.66rem}
+.paleta .rol{font-weight:700}
+
+.tipos{width:100%; border-collapse:collapse; font-size:.7rem; margin-bottom:.7em}
+.tipos td{border-bottom:1px solid var(--line); padding:.26em .4em}
+.tipos td:first-child{font-weight:700; white-space:nowrap}
+.tipos .uso{color:var(--fg2)}
+.escala{font-family:var(--mono); font-size:.66rem; color:var(--fg2); line-height:1.75}
+.escala b{color:var(--fg); font-family:var(--sans); font-size:.68rem}
+
+.barra{display:flex; height:20px; font-size:.58rem; font-weight:700}
+.barra span{display:flex; align-items:center; justify-content:center; white-space:nowrap}
+.leyenda{display:flex; gap:1em; flex-wrap:wrap; margin:.45em 0 0; font-size:.64rem; color:var(--fg2)}
+.leyenda span{display:flex; align-items:center; gap:.35em}
+.leyenda i{width:9px; height:9px; display:inline-block; flex:none}
+
+.reglas{margin:0; padding-left:1.1em; font-size:.7rem}
+.reglas li{margin:.28em 0}
+.reglas strong{color:var(--fg)}
+
+.contraste{width:100%; border-collapse:collapse; font-size:.7rem}
+.contraste td{border-bottom:1px solid var(--line); padding:.26em .4em}
+.contraste .n{font-family:var(--mono); text-align:right; white-space:nowrap}
+
+.logos{display:grid; grid-template-columns:repeat(4,1fr); gap:8px}
+.logocell{border:1px solid var(--line); min-height:56px; display:flex;
+  align-items:center; justify-content:center; padding:.5em}
+.logocell .marca{width:30px; height:30px; color:var(--fg)}
+.logocell.inv{background:var(--fg)} .logocell.inv .marca{color:var(--bg)}
+.logocell.azul{background:var(--pri)} .logocell.azul .marca{color:var(--bg)}
+/* Una tinta: es cómo se imprime en papel, así que no cambia de versión. */
+.logocell.una{background:#DEDCD6} .logocell.una .marca{color:#000}
+
+.pie{grid-column:1 / -1; border-top:1px solid var(--line); margin-top:.5em; padding-top:.6em;
+  font-size:.64rem; color:var(--fg2)}
+
+.tema{position:fixed; top:14px; right:14px; z-index:9; font-family:var(--sans); font-size:.8rem;
+  background:var(--surf); color:var(--fg); border:1px solid var(--line); border-radius:20px;
+  padding:.4em .9em; cursor:pointer}
+
+@media print{
+  @page{size:A4; margin:12mm; background:var(--bg)}
+  /* La ficha imprime en la versión activa, no forzada a blanco: es una pieza de
+     pantalla que además se imprime. print-color-adjust obliga al navegador a no
+     descartar el fondo, que si no sale papel blanco con texto claro encima. */
+  html,body{background:var(--bg); -webkit-print-color-adjust:exact; print-color-adjust:exact}
+  .tema{display:none}
+  .ficha{max-width:none; margin:0; padding:0; font-size:8.5pt}
+  .rejilla{gap:10px 14px}
+  .bloque,table{break-inside:avoid}
+}
+@media screen{ .rejilla{gap:22px 24px} }
+@media screen and (max-width:640px){ .rejilla{grid-template-columns:1fr} }
+</style>
+</head>
+<body>
+<button class="tema" onclick="var r=document.documentElement;r.dataset.theme=r.dataset.theme==='dark'?'light':'dark'">Cambiar tema</button>
+<div class="ficha">
+
+<header class="cab">
+  <div class="id">
+    <svg class="marca" viewBox="0 0 100 100" aria-hidden="true"><rect x="12" y="12" width="76" height="76" rx="3" fill="none" stroke="currentColor" stroke-width="8"/><path d="M34 30 L50 66 L66 30" fill="none" stroke="currentColor" stroke-width="8" stroke-linejoin="miter" stroke-linecap="square"/></svg>
+    <div>
+      <div class="nombre">Valentina Ortúzar</div>
+      <div class="rol">Arquitecta</div>
+    </div>
+  </div>
+  <div class="meta">Ficha de identidad<br>Versión 1.0 · julio de 2026</div>
+</header>
+
+<div class="rejilla">
+
+  <section class="bloque">
+    <div class="rotulo">Color</div>
+    <table class="paleta">
+      <thead><tr><th>Rol</th><th>Clara</th><th>Oscura</th></tr></thead>
+      <tbody>
+        <tr><td class="rol">Fondo</td>
+            <td><span class="m" style="background:#EBEAE6"></span> <span class="hex">#EBEAE6</span></td>
+            <td><span class="m" style="background:#1A1A17"></span> <span class="hex">#1A1A17</span></td></tr>
+        <tr><td class="rol">Superficie</td>
+            <td><span class="m" style="background:#DEDCD6"></span> <span class="hex">#DEDCD6</span></td>
+            <td><span class="m" style="background:#242320"></span> <span class="hex">#242320</span></td></tr>
+        <tr><td class="rol">Tinta · texto</td>
+            <td><span class="m" style="background:#1A1A18"></span> <span class="hex">#1A1A18</span></td>
+            <td><span class="m" style="background:#ECEAE3"></span> <span class="hex">#ECEAE3</span></td></tr>
+        <tr><td class="rol">Texto secundario</td>
+            <td><span class="m" style="background:#615F5A"></span> <span class="hex">#615F5A</span></td>
+            <td><span class="m" style="background:#A4A29B"></span> <span class="hex">#A4A29B</span></td></tr>
+        <tr><td class="rol">Azul de plano · primario</td>
+            <td><span class="m" style="background:#1E4B7B"></span> <span class="hex">#1E4B7B</span></td>
+            <td><span class="m" style="background:#8FB4E0"></span> <span class="hex">#8FB4E0</span></td></tr>
+        <tr><td class="rol">Amarillo de obra · señal</td>
+            <td><span class="m" style="background:#F4C400"></span> <span class="hex">#F4C400</span></td>
+            <td><span class="m" style="background:#F4C400"></span> <span class="hex">#F4C400</span></td></tr>
+        <tr><td class="rol">Filete</td>
+            <td><span class="m" style="background:#D4D2CB"></span> <span class="hex">#D4D2CB</span></td>
+            <td><span class="m" style="background:#33322C"></span> <span class="hex">#33322C</span></td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="bloque">
+    <div class="rotulo">Tipografía</div>
+    <table class="tipos">
+      <tr><td>IBM Plex Sans</td><td class="uso">Títulos, cuerpo, cuadros</td></tr>
+      <tr><td>IBM Plex Mono</td><td class="uso">Cotas, cifras, tokens</td></tr>
+    </table>
+    <div class="escala">
+      <b>Escala</b> 2,1 · 1,2 · 1 · 0,72 rem<br>
+      <b>Pesos</b> 400 / 600 / 700<br>
+      <b>Tope de estilos</b> nueve<br>
+      <b>Interlineado</b> 1,6 en cuerpo
+    </div>
+  </section>
+
+  <section class="bloque">
+    <div class="rotulo">Proporción de uso</div>
+    <div class="barra">
+      <span style="background:#615F5A; color:#fff; flex:0 0 90%">90 % neutros</span>
+      <span style="background:#1E4B7B; color:#fff; flex:0 0 8%">8 %</span>
+      <span style="background:#F4C400; flex:0 0 2%"></span>
+    </div>
+    <div class="leyenda">
+      <span><i style="background:#615F5A"></i>neutros</span>
+      <span><i style="background:#1E4B7B"></i>azul de plano</span>
+      <span><i style="background:#F4C400"></i>amarillo</span>
+    </div>
+    <p style="font-size:.64rem;color:var(--fg2);margin:.5em 0 0">En una pieza que cabe de una
+    mirada el azul sube hasta cerca de un cuarto. El amarillo no sube nunca.</p>
+  </section>
+
+  <section class="bloque">
+    <div class="rotulo">Logotipo</div>
+    <div class="logos">
+      <div class="logocell pos"><svg class="marca" viewBox="0 0 100 100" aria-hidden="true"><rect x="12" y="12" width="76" height="76" rx="3" fill="none" stroke="currentColor" stroke-width="8"/><path d="M34 30 L50 66 L66 30" fill="none" stroke="currentColor" stroke-width="8" stroke-linejoin="miter" stroke-linecap="square"/></svg></div>
+      <div class="logocell inv"><svg class="marca" viewBox="0 0 100 100" aria-hidden="true"><rect x="12" y="12" width="76" height="76" rx="3" fill="none" stroke="currentColor" stroke-width="8"/><path d="M34 30 L50 66 L66 30" fill="none" stroke="currentColor" stroke-width="8" stroke-linejoin="miter" stroke-linecap="square"/></svg></div>
+      <div class="logocell azul"><svg class="marca" viewBox="0 0 100 100" aria-hidden="true"><rect x="12" y="12" width="76" height="76" rx="3" fill="none" stroke="currentColor" stroke-width="8"/><path d="M34 30 L50 66 L66 30" fill="none" stroke="currentColor" stroke-width="8" stroke-linejoin="miter" stroke-linecap="square"/></svg></div>
+      <div class="logocell una"><svg class="marca" viewBox="0 0 100 100" aria-hidden="true"><rect x="12" y="12" width="76" height="76" rx="3" fill="none" stroke="currentColor" stroke-width="8"/><path d="M34 30 L50 66 L66 30" fill="none" stroke="currentColor" stroke-width="8" stroke-linejoin="miter" stroke-linecap="square"/></svg></div>
+    </div>
+    <p style="font-size:.64rem;color:var(--fg2);margin:.5em 0 0">Resguardo: media cara del cuadrado.
+    Mínimo 12 mm impreso, 28 px en pantalla. El símbolo no se tiñe nunca.</p>
+  </section>
+
+  <section class="bloque ancho">
+    <div class="rotulo">Las que más se rompen</div>
+    <ul class="reglas">
+      <li><strong>El amarillo marca, no ordena.</strong> Va rellenando bloques, con negro encima. Nunca en texto, ni en línea fina, ni para numerar.</li>
+      <li><strong>Una sola medida de columna.</strong> Párrafos, cuadros y figuras al mismo ancho, justificados y con partición.</li>
+      <li><strong>La numeración va en azul.</strong> Secciones, subsecciones e índice. Numerar con el amarillo lo gasta.</li>
+      <li><strong>El azul no se aplica literal en oscura.</strong> Pasa a #8FB4E0; el valor claro allá se apagaría.</li>
+    </ul>
+  </section>
+
+  <section class="bloque ancho">
+    <div class="rotulo">Contraste verificado · WCAG 2.1</div>
+    <table class="contraste">
+      <tr><td>Tinta sobre fondo</td><td class="n">14,48 : 1</td>
+          <td>Azul de plano sobre fondo</td><td class="n">7,43 : 1</td></tr>
+      <tr><td>Negro sobre amarillo</td><td class="n">10,58 : 1</td>
+          <td>Texto secundario sobre fondo</td><td class="n">5,30 : 1</td></tr>
+    </table>
+  </section>
+
+  <div class="pie">El manual zanja lo que esta ficha no alcanza · manual-valentina.pdf · Versión 1.0</div>
+
+</div>
+</div>
+</body>
+</html>

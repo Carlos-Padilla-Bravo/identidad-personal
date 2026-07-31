@@ -8,7 +8,7 @@
 /* Fraunces · latin-ext */
 /*FONTS*/:root{
   --crema:#FAF6EF; --superf:#F1E9DB; --texto:#2A2622; --texto-sec:#6E6459;
-  --primario:#3C6E54; --primario-osc:#2E5943; --senal:#B4502F; --borde:#E5DBCB;
+  --primario:#3C6E54; --primario-osc:#2E5943; --senal:#AA4C2C; --borde:#E5DBCB;
   --blanco:#FFFFFF;
   --bg:var(--crema); --surf:var(--superf); --fg:var(--texto); --fg2:var(--texto-sec);
   --pri:var(--primario); --pri2:var(--primario-osc); --sig:var(--senal); --line:var(--borde);
@@ -187,6 +187,7 @@ td.mono{white-space:nowrap}
   h1.sec.no-break{break-before:auto}
   table,.fig,.firma-demo,.nota,.usos{break-inside:avoid}
   .pie,.etiqueta.abajo{break-before:avoid}
+  .etiqueta{break-after:avoid}   /* a label never separates from what it labels */
   p,li{orphans:2; widows:2}
 }
 </style>
@@ -300,7 +301,7 @@ td.mono{white-space:nowrap}
   <div class="sw"><div class="muestra" style="background:#F1E9DB"></div><div class="txt"><div class="rol">Superficie</div><div class="hex">#F1E9DB</div></div></div>
   <div class="sw"><div class="muestra" style="background:#2A2622"></div><div class="txt"><div class="rol">Texto</div><div class="hex">#2A2622</div></div></div>
   <div class="sw"><div class="muestra" style="background:#3C6E54"></div><div class="txt"><div class="rol">Primario · verde</div><div class="hex">#3C6E54</div></div></div>
-  <div class="sw"><div class="muestra" style="background:#B4502F"></div><div class="txt"><div class="rol">Señal · terracota</div><div class="hex">#B4502F</div></div></div>
+  <div class="sw"><div class="muestra" style="background:#AA4C2C"></div><div class="txt"><div class="rol">Señal · terracota</div><div class="hex">#AA4C2C</div></div></div>
   <div class="sw"><div class="muestra" style="background:#6E6459"></div><div class="txt"><div class="rol">Texto secundario</div><div class="hex">#6E6459</div></div></div>
 </div>
 <div class="etiqueta abajo">Figura 2 · Paleta y roles</div>
@@ -309,12 +310,12 @@ td.mono{white-space:nowrap}
   <div class="barra">
     <span style="background:#6E6459; flex:0 0 90%">90 % neutros</span>
     <span style="background:#3C6E54; flex:0 0 8%">8 %</span>
-    <span style="background:#B4502F; flex:0 0 2%"></span>
+    <span style="background:#AA4C2C; flex:0 0 2%"></span>
   </div>
   <div class="leyenda">
     <span><i style="background:#6E6459"></i>90 % neutros</span>
     <span><i style="background:#3C6E54"></i>8 % primario</span>
-    <span><i style="background:#B4502F"></i>2 % señal</span>
+    <span><i style="background:#AA4C2C"></i>2 % señal</span>
   </div>
 </div>
 <div class="etiqueta abajo">Figura 3 · Proporción de uso</div>
@@ -326,7 +327,7 @@ td.mono{white-space:nowrap}
   <tbody>
     <tr><td>Texto sobre crema</td><td>Cuerpo</td><td class="mono">13,94</td><td>AAA</td></tr>
     <tr><td>Primario sobre crema</td><td>Títulos, enlaces</td><td class="mono">5,49</td><td>AA</td></tr>
-    <tr><td>Señal sobre crema</td><td>Etiquetas</td><td class="mono">4,72</td><td>AA</td></tr>
+    <tr><td>Señal sobre crema</td><td>Etiquetas</td><td class="mono">5,16</td><td>AA</td></tr>
     <tr><td>Blanco sobre primario</td><td>Botones, barras</td><td class="mono">5,91</td><td>AA</td></tr>
   </tbody>
 </table>
@@ -406,7 +407,7 @@ td.mono{white-space:nowrap}
     <tr><td>Texto</td><td class="mono">#2A2622</td><td class="mono">#F0E9DD</td></tr>
     <tr><td>Texto secundario</td><td class="mono">#6E6459</td><td class="mono">#B7AB9B</td></tr>
     <tr><td>Primario</td><td class="mono">#3C6E54</td><td class="mono">#7FB894</td></tr>
-    <tr><td>Señal</td><td class="mono">#B4502F</td><td class="mono">#DE8B66</td></tr>
+    <tr><td>Señal</td><td class="mono">#AA4C2C</td><td class="mono">#DE8B66</td></tr>
     <tr><td>Filete</td><td class="mono">#E5DBCB</td><td class="mono">#3A332C</td></tr>
   </tbody>
 </table>

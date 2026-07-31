@@ -21,6 +21,7 @@ It is for people who put out work under their own name and want it to look and s
 - Runs the process of building your personal brand identity manual: what to ask, in what order, what to settle before moving on, and when to stop and consult.
 - Makes you take the design decisions with judgment, not by picking from a menu: color direction, type, hierarchy, signature or logo, layout.
 - Delivers the finished manual as a self-contained HTML file, ready to print to a paginated PDF from a Chromium browser.
+- Delivers, alongside it, a **one-page identity card**: the palette, the type, the signature and the rules that get broken most often, on a single sheet. It is what you keep open while you work, and what you hand to whoever produces something on your brand. The manual settles the arguments; the card carries the values.
 - Documents and systematizes your logo if you already have one, or builds the typographic name signature if you do not.
 - Leaves the system tokens (colors by role, type scale, light and dark versions) so you can reuse the identity on other pieces.
 
@@ -46,7 +47,7 @@ The path has three moments:
 
 **Visual system: how it looks.** With the foundation closed, the skill builds the color (direction first, then the values: a dominant neutral, a primary and a rationed signal color, with contrast verified by number), the type (character first, then a freely licensed family and a hierarchy with a cap on styles), your signature or your logo depending on what you have, and the layout. At the points that are costly to reverse (color, type and signature), it stops to consult you before setting anything.
 
-**The deliverable.** The skill assembles the manual as a single-page, self-contained HTML file, with the fonts embedded and no external dependencies, in a light and a dark version. On screen it reads as one flow; printed to PDF from a Chromium browser it comes out paginated, with page numbers, header and footer. It closes with the token sheet (colors by role, type scale, families) so you can reuse the identity on other pieces.
+**The deliverable.** The skill assembles the manual as a single-page, self-contained HTML file, with the fonts embedded and no external dependencies, in a light and a dark version. On screen it reads as one flow; printed to PDF from a Chromium browser it comes out paginated, with page numbers, header and footer. It closes with the token sheet (colors by role, type scale, families) so you can reuse the identity on other pieces. And it hands you the one-page card: a manual has to justify itself and runs long, but nobody opens forty pages to check a hex value, so the values you use every day live on a sheet of their own.
 
 ## 4. Requirements
 
@@ -80,14 +81,16 @@ The repo includes two full manuals built with the skill, one for each branch of 
 
 ![Three pages of Ignacia Fuentes's manual: cover with the name signature, color system with the palette and WCAG contrasts, and the type scale.](ejemplo/muestra-ignacia.png)
 
-**Valentina Ortúzar**, an architect, precise and structural in tone. Her mark is a **logo**: a geometric monogram, so her manual documents the logo module (versions, clear space, minimum size, correct and incorrect uses). An almost monochrome concrete palette with a hi-vis construction-yellow signal that marks by filling rather than tinting text, and the IBM Plex family.
+**Valentina Ortúzar**, an architect, precise and structural in tone. Her mark is a **logo**: a geometric monogram, so her manual documents the logo module (versions, clear space, minimum size, correct and incorrect uses). Warm concrete neutrals under a cool **blueprint blue** that structures and numbers, with a hi-vis construction-yellow signal that marks by filling rather than tinting text, and the IBM Plex family.
 
 ![Three pages of Valentina Ortúzar's manual: cover with the monogram, the logo section with its versions and rules, and the color system.](ejemplo/muestra-valentina.png)
 
-Both start from opposite tones, to show that the system draws out each person's character rather than imposing one. Each manual opens in any browser (`.html`) or reads as a 13-page PDF:
+Both start from opposite tones, to show that the system draws out each person's character rather than imposing one. Each case ships the full deliverable: the manual, which opens in any browser (`.html`) or reads as a paginated PDF, and its **one-page identity card**.
 
-- Ignacia: [`manual-ignacia.html`](ejemplo/manual-ignacia.html) · [`.pdf`](ejemplo/manual-ignacia.pdf)
-- Valentina: [`manual-valentina.html`](ejemplo/manual-valentina.html) · [`.pdf`](ejemplo/manual-valentina.pdf)
+- Ignacia: manual [`.html`](ejemplo/manual-ignacia.html) · [`.pdf`](ejemplo/manual-ignacia.pdf), 13 pages — card [`.html`](ejemplo/ficha-ignacia.html) · [`.pdf`](ejemplo/ficha-ignacia.pdf)
+- Valentina: manual [`.html`](ejemplo/manual-valentina.html) · [`.pdf`](ejemplo/manual-valentina.pdf), 15 pages — card [`.html`](ejemplo/ficha-valentina.html) · [`.pdf`](ejemplo/ficha-valentina.pdf)
+
+The two cards are worth reading side by side: same structure, and still they look nothing alike, because each is composed in its owner's own values. Both ship in the dark version, which is the right call for a piece consulted on a screen; the button in the corner switches to light.
 
 ## 8. What your manual is for
 
