@@ -1,0 +1,298 @@
+<!doctype html>
+<!--
+  ONE-PAGE IDENTITY CARD · Identidad Personal skill
+  ============================================================================
+  The companion to assets/plantilla.html. The manual is the source that settles
+  the arguments; this is the sheet the person keeps open while working, and the
+  one they hand to a collaborator who needs the values and not the reasoning.
+
+  Like the template, this is a mechanical scaffold, NOT a design: it carries the
+  one-page print geometry and the blocks, with no palette, no typeface and no
+  content. Those are the decisions taken with the person.
+
+  How the skill uses it:
+    1. Copy the :root and dark blocks from the finished manual, unchanged. The
+       card must not restate a value: it reads the same tokens, so it cannot
+       drift from the manual.
+    2. Embed the same fonts as base64 data: URIs so the file stays self-
+       contained, and point --serif / --sans / --mono at them.
+    3. Replace every {{...}} placeholder. Drop a block that does not apply
+       (there is no logo, there is no motion) rather than leaving it empty.
+    4. Print and CHECK IT IS ONE PAGE. This is the only mechanic here and it is
+       the one that breaks: a palette with more roles, or a longer name, pushes
+       it to two. Fix it by cutting content, not by shrinking the type below
+       7,5 pt. If it will not fit, the card is carrying argument that belongs in
+       the manual.
+
+  Deliver a light and a dark version, and decide with the person which one is
+  the PDF. Unlike the manual, this is not automatic: the manual always prints
+  light because it is a document, but the card is consulted on a screen far more
+  often than it is pinned to a wall, so the dark version is a legitimate default
+  for it. Whichever is chosen, print it in that version rather than letting it
+  fall back to white.
+  ============================================================================
+-->
+<html lang="{{LANG}}">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{NAME}} · {{IDENTITY CARD}}</title>
+<style>
+
+/* --- FONTS ---------------------------------------------------------------
+   The same embedded families as the manual. Until embedded, the stacks below
+   fall back to system fonts.
+-------------------------------------------------------------------------- */
+
+:root{
+  /* PALETTE — paste the manual's values. Roles stay; only the hex changes. */
+  --bg:#FFFFFF;        /* page background (the "paper") */
+  --surf:#F4F2EF;      /* surface: blocks, swatches */
+  --fg:#1A1A1A;        /* body text */
+  --fg2:#6B6B6B;       /* secondary text: labels, captions */
+  --pri:#3A3A3A;       /* primary: headings, structure */
+  --pri2:#3A3A3A;      /* primary, darker variant for light backgrounds */
+  --sig:#8A8A8A;       /* signal: block labels only. Rationed. */
+  --line:#E2E2E2;      /* hairline rules and borders */
+  /* TYPE — point these at the embedded families. */
+  --serif:Georgia,'Times New Roman',serif;
+  --sans:system-ui,-apple-system,sans-serif;
+  --mono:'Courier New',monospace;
+}
+:root[data-theme="dark"]{
+  --bg:#1B1B1B; --surf:#262626; --fg:#EDEDED; --fg2:#A8A8A8;
+  --pri:#BFBFBF; --pri2:#BFBFBF; --sig:#9A9A9A; --line:#343434;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#1B1B1B; --surf:#262626; --fg:#EDEDED; --fg2:#A8A8A8;
+    --pri:#BFBFBF; --pri2:#BFBFBF; --sig:#9A9A9A; --line:#343434;
+  }
+}
+
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0; background:var(--bg); color:var(--fg);
+  font-family:var(--sans); font-size:15px; line-height:1.45; font-weight:400;
+}
+.ficha{max-width:800px; margin:0 auto; padding:40px 32px 64px}
+
+/* --- Header: the signature, and what version this is --- */
+.cab{display:flex; align-items:flex-end; justify-content:space-between; gap:2em;
+  padding-bottom:.9em; border-bottom:2px solid var(--pri); margin-bottom:1.4em; flex-wrap:wrap}
+.cab .nombre{font-family:var(--serif); font-weight:600; font-size:2.1rem; line-height:1;
+  letter-spacing:-.015em; color:var(--fg)}
+.cab .rol{font-family:var(--sans); font-weight:700; font-size:.66rem; letter-spacing:.28em;
+  text-transform:uppercase; color:var(--sig); margin-top:.55em}
+.cab .meta{font-family:var(--mono); font-size:.68rem; color:var(--fg2); text-align:right; line-height:1.6}
+
+/* --- Blocks --- */
+.rejilla{display:grid; grid-template-columns:1fr 1fr; gap:14px 18px; align-items:start}
+.ancho{grid-column:1 / -1}          /* a block that spans both columns */
+.bloque{break-inside:avoid}
+.rotulo{font-family:var(--sans); font-weight:700; font-size:.62rem; letter-spacing:.09em;
+  text-transform:uppercase; color:var(--sig); margin:0 0 .5em}
+.bloque p{margin:0 0 .5em}
+
+/* Palette: one row per role, with the value in each version */
+.paleta{width:100%; border-collapse:collapse; font-size:.72rem}
+.paleta th{text-align:left; font-weight:700; font-size:.6rem; letter-spacing:.05em;
+  text-transform:uppercase; color:var(--fg2); border-bottom:1px solid var(--fg2); padding:.25em .4em}
+.paleta td{border-bottom:1px solid var(--line); padding:.28em .4em; vertical-align:middle}
+.paleta .m{width:1.1em; height:1.1em; border-radius:3px; border:1px solid var(--line);
+  display:inline-block; vertical-align:-.2em}
+.paleta .hex{font-family:var(--mono); font-size:.68rem}
+.paleta .rol{font-weight:700}
+
+/* Type: families and the scale, side by side */
+.tipos{width:100%; border-collapse:collapse; font-size:.72rem; margin-bottom:.7em}
+.tipos td{border-bottom:1px solid var(--line); padding:.28em .4em}
+.tipos td:first-child{font-weight:700; white-space:nowrap}
+.tipos .uso{color:var(--fg2)}
+.escala{font-family:var(--mono); font-size:.68rem; color:var(--fg2); line-height:1.7}
+.escala b{color:var(--fg); font-family:var(--sans); font-size:.7rem}
+
+/* Proportion bar */
+.barra{display:flex; height:22px; border-radius:4px; overflow:hidden; font-size:.6rem;
+  font-weight:700; color:#fff}
+.barra span{display:flex; align-items:center; justify-content:center; white-space:nowrap}
+.leyenda{display:flex; gap:1.1em; flex-wrap:wrap; margin:.45em 0 0; font-size:.66rem; color:var(--fg2)}
+.leyenda span{display:flex; align-items:center; gap:.35em}
+.leyenda i{width:9px; height:9px; border-radius:2px; display:inline-block; flex:none}
+
+/* The rules that get broken most often */
+.reglas{margin:0; padding-left:1.1em; font-size:.72rem}
+.reglas li{margin:.3em 0}
+.reglas strong{color:var(--fg)}
+
+/* Verified contrast: the numbers, with no argument around them */
+.contraste{width:100%; border-collapse:collapse; font-size:.72rem}
+.contraste td{border-bottom:1px solid var(--line); padding:.28em .4em}
+.contraste .n{font-family:var(--mono); text-align:right; white-space:nowrap}
+
+/* Signature block */
+.firma{border:1px solid var(--line); background:var(--surf); border-radius:6px;
+  padding:.9em 1.1em; display:inline-block}
+.firma .n{font-family:var(--serif); font-weight:600; font-size:1.4rem; line-height:1; color:var(--fg)}
+.firma .r{font-family:var(--sans); font-weight:700; font-size:.6rem; letter-spacing:.24em;
+  text-transform:uppercase; color:var(--sig); margin-top:.45em}
+
+/* Foot: where the full manual lives */
+.pie{grid-column:1 / -1; border-top:1px solid var(--line); margin-top:.5em; padding-top:.6em;
+  font-size:.66rem; color:var(--fg2)}
+
+/* Theme toggle, screen only */
+.tema{position:fixed; top:14px; right:14px; z-index:9; font-family:var(--sans); font-size:.8rem;
+  background:var(--surf); color:var(--fg); border:1px solid var(--line); border-radius:20px;
+  padding:.4em .9em; cursor:pointer}
+
+/* ====== PRINT: one page, no running header or footer ======
+   Unlike the manual, the card does NOT force a white page. It prints in
+   whichever version is active, because a card is a screen piece that also gets
+   printed, and a dark card that turns into light-text-on-white is unusable.
+   Two declarations are doing that, and both are needed: print-color-adjust
+   stops the browser dropping the background, and the background on @page fills
+   the margin band. Without the second one the card prints as a dark rectangle
+   floating inside a white 12mm frame, because html/body only paint the content
+   box. To ship a light PDF instead, set data-theme="light" on <html>. */
+@media print{
+  @page{size:A4; margin:12mm; background:var(--bg)}
+  html,body{background:var(--bg); -webkit-print-color-adjust:exact; print-color-adjust:exact}
+  .tema{display:none}
+  .ficha{max-width:none; margin:0; padding:0; font-size:8.5pt}
+  .rejilla{gap:10px 14px}
+  .bloque,.firma,table{break-inside:avoid}
+}
+@media screen{
+  .rejilla{gap:22px 24px}
+}
+@media screen and (max-width:640px){
+  .rejilla{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+<button class="tema" onclick="var r=document.documentElement;r.dataset.theme=r.dataset.theme==='dark'?'light':'dark'">{{THEME LABEL}}</button>
+<div class="ficha">
+
+<!-- ===================== HEADER ===================== -->
+<header class="cab">
+  <div>
+    <div class="nombre">{{NAME}}</div>
+    <div class="rol">{{ROLE}}</div>
+  </div>
+  <div class="meta">
+    {{Identity card}}<br>
+    {{v1.0 · month year}}
+  </div>
+</header>
+
+<div class="rejilla">
+
+  <!-- ===================== COLOUR ===================== -->
+  <section class="bloque">
+    <div class="rotulo">{{Colour}}</div>
+    <table class="paleta">
+      <thead><tr><th>{{Role}}</th><th>{{Light}}</th><th>{{Dark}}</th></tr></thead>
+      <tbody>
+        <!-- One row per role. The inline background is the real decided hex:
+             this is a card, the swatch has to be the actual colour. -->
+        <tr><td class="rol">{{Background}}</td>
+            <td><span class="m" style="background:#FFFFFF"></span> <span class="hex">#FFFFFF</span></td>
+            <td><span class="m" style="background:#1B1B1B"></span> <span class="hex">#1B1B1B</span></td></tr>
+        <tr><td class="rol">{{Surface}}</td>
+            <td><span class="m" style="background:#F4F2EF"></span> <span class="hex">#F4F2EF</span></td>
+            <td><span class="m" style="background:#262626"></span> <span class="hex">#262626</span></td></tr>
+        <tr><td class="rol">{{Text}}</td>
+            <td><span class="m" style="background:#1A1A1A"></span> <span class="hex">#1A1A1A</span></td>
+            <td><span class="m" style="background:#EDEDED"></span> <span class="hex">#EDEDED</span></td></tr>
+        <tr><td class="rol">{{Secondary text}}</td>
+            <td><span class="m" style="background:#6B6B6B"></span> <span class="hex">#6B6B6B</span></td>
+            <td><span class="m" style="background:#A8A8A8"></span> <span class="hex">#A8A8A8</span></td></tr>
+        <tr><td class="rol">{{Primary}}</td>
+            <td><span class="m" style="background:#3A3A3A"></span> <span class="hex">#3A3A3A</span></td>
+            <td><span class="m" style="background:#BFBFBF"></span> <span class="hex">#BFBFBF</span></td></tr>
+        <tr><td class="rol">{{Signal}}</td>
+            <td><span class="m" style="background:#8A8A8A"></span> <span class="hex">#8A8A8A</span></td>
+            <td><span class="m" style="background:#9A9A9A"></span> <span class="hex">#9A9A9A</span></td></tr>
+        <tr><td class="rol">{{Rule}}</td>
+            <td><span class="m" style="background:#E2E2E2"></span> <span class="hex">#E2E2E2</span></td>
+            <td><span class="m" style="background:#343434"></span> <span class="hex">#343434</span></td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- ===================== TYPE ===================== -->
+  <section class="bloque">
+    <div class="rotulo">{{Type}}</div>
+    <table class="tipos">
+      <tr><td>{{Serif family}}</td><td class="uso">{{Headings, signature}}</td></tr>
+      <tr><td>{{Sans family}}</td><td class="uso">{{Body, tables, labels}}</td></tr>
+      <tr><td>{{Mono family}}</td><td class="uso">{{Figures, tokens}}</td></tr>
+    </table>
+    <div class="escala">
+      <b>{{Scale}}</b><br>
+      2,1 · 1,2 · 1 · 0,82 · 0,72 rem<br>
+      <b>{{Styles}}</b> {{9 · counting the display figure}}<br>
+      <b>{{Leading}}</b> {{1,45 body}}
+    </div>
+  </section>
+
+  <!-- ===================== PROPORTION ===================== -->
+  <section class="bloque">
+    <div class="rotulo">{{Usage proportion}}</div>
+    <div class="barra">
+      <span style="background:#8A8A8A; flex:0 0 90%">90 %</span>
+      <span style="background:#3A3A3A; flex:0 0 8%">8 %</span>
+      <span style="background:#B0B0B0; flex:0 0 2%"></span>
+    </div>
+    <div class="leyenda">
+      <span><i style="background:#8A8A8A"></i>{{neutrals}}</span>
+      <span><i style="background:#3A3A3A"></i>{{primary}}</span>
+      <span><i style="background:#B0B0B0"></i>{{signal}}</span>
+    </div>
+    <p style="font-size:.66rem;color:var(--fg2);margin:.5em 0 0">{{In a piece that fits in one
+    view the primary rises to about a quarter. The signal never rises.}}</p>
+  </section>
+
+  <!-- ===================== SIGNATURE (or logo) ===================== -->
+  <section class="bloque">
+    <div class="rotulo">{{Signature}}</div>
+    <div class="firma">
+      <div class="n">{{NAME}}</div>
+      <div class="r">{{ROLE}}</div>
+    </div>
+    <p style="font-size:.66rem;color:var(--fg2);margin:.5em 0 0">{{Clear space, minimum size,
+    permitted colours: one line each, the numbers only.}}</p>
+  </section>
+
+  <!-- ===================== THE RULES BROKEN MOST OFTEN ===================== -->
+  <section class="bloque ancho">
+    <div class="rotulo">{{Rules}}</div>
+    <ul class="reglas">
+      <!-- Three or four, no more, and only the ones this person actually gets
+           wrong. A rule nobody breaks is spending a line the card does not have. -->
+      <li><strong>{{Rule.}}</strong> {{Stated in one line, no argument. The argument is in the manual.}}</li>
+      <li><strong>{{Rule.}}</strong> {{...}}</li>
+      <li><strong>{{Rule.}}</strong> {{...}}</li>
+    </ul>
+  </section>
+
+  <!-- ===================== VERIFIED CONTRAST ===================== -->
+  <section class="bloque ancho">
+    <div class="rotulo">{{Verified contrast · WCAG 2.1}}</div>
+    <table class="contraste">
+      <tr><td>{{Text on background}}</td><td class="n">0,00 : 1</td>
+          <td>{{Primary on background}}</td><td class="n">0,00 : 1</td></tr>
+      <tr><td>{{Text on surface}}</td><td class="n">0,00 : 1</td>
+          <td>{{Signal on background}}</td><td class="n">0,00 : 1</td></tr>
+    </table>
+  </section>
+
+  <div class="pie">{{The full manual settles anything this card does not.}} · {{manual file name}} · {{v1.0}}</div>
+
+</div>
+</div>
+</body>
+</html>

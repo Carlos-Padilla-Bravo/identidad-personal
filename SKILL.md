@@ -3,7 +3,8 @@ name: identidad-personal
 description: >-
   Guides a person, through questions, to build their own personal brand
   identity manual (color, type, composition and voice) and delivers it finished
-  as a self-contained HTML file that prints to a paginated PDF from the browser.
+  as a self-contained HTML file that prints to a paginated PDF from the browser,
+  plus a one-page identity card with the values for everyday use.
   It is a method of consultation, not a template: it closes each design decision
   before moving on. Works in English and Spanish; it detects or asks the
   person's language and delivers in it. Trigger when someone asks to build,
@@ -38,7 +39,7 @@ The skill enforces these in the manual it produces.
 
 - **Close the direction before the detail.** The color direction is agreed before writing a single hex value; the type character, before choosing a family.
 - **Ration the signal color.** An accent that marks, not one that decorates. Reference proportion: 90% neutrals, 8% primary, 2% signal. That split is calibrated on an extended piece, the kind the reader scrolls or turns through. In a piece that fits in a single view the primary needs more surface, because the elements carrying it (heading, rule, accent) are all present at once on a small area; up to a quarter is still an accompaniment to the neutrals. The signal's ceiling never moves: it marks one thing per piece, on forty pages or on one screen. State the proportion in the manual as depending on the piece, not as one number.
-- **Cap the type styles.** A small number (reference: nine). A new style on a whim breaks the system.
+- **Cap the type styles.** A small number (reference: nine). A new style on a whim breaks the system. Count the display figure: a large numeral set apart from the body is a style of its own, and it is the one people forget to count.
 - **Verify contrast with a number**, per WCAG 2.1, not by eye. Do not rely on color alone.
 - **Freely licensed type by default,** so it can be embedded and reused at no cost and without permission.
 - **The logo is a decision point, not a rule.** Ask whether the mark is a logo or a typographic name signature, and branch. The skill does not design the logo; it only documents one that already exists.
@@ -69,6 +70,15 @@ With the foundation closed, now expressing it. The visual translates what came b
    - **Only as many steps as there are roles.** A short manual needs four; one with tables, notes and metadata needs closer to seven. Do not build a scale for its own sake.
 
    **Check the palette against the territory.** The territory closed in Phase A names what stays out. Some hues point straight at a sector: yellow-green at agriculture, teal at sustainability and wellness, a saturated violet-blue at digital products. If a value points at something the person excluded, it contradicts the foundation no matter how well it performs on contrast.
+
+   **Two versions are two mappings, not one palette inverted.** A light and a dark version means every role points at a different value in each, and every one of those values is verified against the surface of its own version, not against the one it was picked on. The trap is the set that gets left out of the mapping: a group of values written once as a flat list, applied literally in both versions, reads correctly in the one it was designed for and can go invisible in the other. If the system defines a fixed order of chart series, or any other set of values used by position rather than by role, it maps by version like everything else.
+
+   When a value cannot reach contrast in one version and no free colour replaces it without becoming indistinguishable from another in the same set, **outline it in a value that does reach**, rather than swapping it for something worse. Two things about the outline: it belongs to the version, not to the colour, so the same value can need it in light and not in dark; and if the set has a fixed order, say in the manual that the order is one of distribution, not of hierarchy, or the first slot gets read as the most important thing.
+
+   **Every value is calibrated against a surface, and stops being valid when the surface moves.** A hairline measured against the page fails over a tinted panel, where the tint has shifted the background out from under it; there the rule takes the secondary text value instead. Check any value that sits on something other than the base surface. And when a surface needs tonal variation, get it by **mixing the value against the surface, not by lowering opacity**: opacity makes the resulting contrast depend on whatever ends up behind it, which is exactly what the verified numbers stop being able to promise.
+
+   **An image does not change version.** A photograph or an illustration stays the same in light and dark while everything around it flips, so if the manual carries images, close how they behave before the manual ships. Default that works: veil the image with the base surface of the active version, and place text only over the solid stretch, never over the image itself.
+
 2. **Type.** Character first; then a freely licensed family; hierarchy with a cap on styles; a scale built on a fixed ratio.
 3. **Signature or logo.** The Phase B decision. With a logo, document its rules: versions, clear space, minimum size, incorrect uses, placement. Without a logo, build the typographic name signature.
 4. **Composition.** Grid, margins, the treatment of tables and figures if the manual uses them, and the page format for printing: numbering, header with the name, footer with version and date, and breaks between sections. On screen the manual is continuous; that format appears when printing to PDF. The rules below are not optional.
@@ -86,12 +96,17 @@ With the foundation closed, now expressing it. The visual translates what came b
 - **Figure title at the foot, table title above.** The "Figure N · …" label always sits at the base of the figure; the "Table N · …" label above the table. Same signal marker on both, different position.
 - **A dividing rule below the header and above the footer** on interior pages, not on the cover. Draw it with `border-bottom` and `border-top` on the `@page` margin boxes; include the center boxes with a space as content so the line runs unbroken across the width, and drop them on `@page:first`.
 
+**Motion, only if the identity will live on screen.** Ask whether the person will make screen pieces (slides, a site) under this identity. If they will not, skip it: a manual that only ever prints does not need a chapter on movement. If they will, close it, because motion is part of how an identity reads and undeclared motion is where each new piece invents its own. What to settle: that motion belongs to the graphic elements, not to reading text, which does not move in or out; that it draws attention to something rather than announcing itself; and that it stops entirely when the reader has asked it to, via `prefers-reduced-motion`, with the piece landing in its final state and not in a broken one.
+
 ### Phase C. The deliverable
 
 1. **Assemble the manual as a self-contained HTML file:** a single page, everything embedded, no external dependencies. Start from the reference scaffold in [`assets/plantilla.html`](assets/plantilla.html), which carries the proven mechanics (the `@page` print boxes, the document structure, one worked example of each block) with no palette or content. Fill its `{{...}}` placeholders and `:root` tokens with the decisions made, embed the chosen fonts as base64, and include a light and a dark version. Do not rebuild the print CSS from scratch: pagination is native, so no pagination library is needed. Printed from a Chromium browser (Chrome or Edge) with "Background graphics" on, the file comes out paginated, with page numbers, header and footer. On screen it stays continuous.
-2. **Close with a token sheet:** colors by role, type scale, families. It is the contract other tools can read.
-3. **For an editable `.docx`,** there is [`ooxmlkit`](https://github.com/Carlos-Padilla-Bravo/ooxmlkit), a separate published library that generates Word from the same decisions. It is optional and not part of this skill, and it asks for more: closing the document needs Windows and Microsoft Word. The HTML above already prints the formal paginated PDF on any platform.
-4. **Hand over the loose tokens too,** to reuse the identity on other pieces or to turn the manual into a skill that other skills consult.
+2. **Deliver a one-page identity card alongside the manual,** from the same scaffold logic: [`assets/ficha.html`](assets/ficha.html), a self-contained HTML file that prints to exactly one page. The manual is the source that settles the arguments; the card is what the person actually keeps open while working, and what they hand to a collaborator who needs the values and not the reasoning. Build it from the decided tokens, not from the manual's prose: the palette with its hex values and roles, the type families and the scale, the signature, the usage proportion, and the three or four rules that are broken most often. It carries no argument and no examples. Deliver it in the light and the dark version, and ask which one becomes the PDF. Do not assume the answer the manual gives: the manual prints light because it is a document meant to be read on paper, while the card is consulted on a screen far more often than it is pinned to a wall, so the dark version is a legitimate default for it. Whichever is chosen, make the print CSS honour it instead of forcing a white page, or a dark card prints as light text on blank paper.
+
+   The card is not a summary the person can skip. A manual runs to dozens of pages because it has to justify itself, and nobody consults dozens of pages to check a hex value. If the manual has grown long enough to worry the person, the card is the answer, not cutting the manual: measure before cutting, because in a document like this the length comes from the figures and the tables, not from the prose, and trimming paragraphs buys almost nothing. If it really has to get shorter, the lever is the figures.
+3. **Close with a token sheet:** colors by role, type scale, families. It is the contract other tools can read.
+4. **For an editable `.docx`,** there is [`ooxmlkit`](https://github.com/Carlos-Padilla-Bravo/ooxmlkit), a separate published library that generates Word from the same decisions. It is optional and not part of this skill, and it asks for more: closing the document needs Windows and Microsoft Word. The HTML above already prints the formal paginated PDF on any platform.
+5. **Hand over the loose tokens too,** to reuse the identity on other pieces or to turn the manual into a skill that other skills consult.
 
 ## Structure of the delivered manual
 
@@ -107,11 +122,13 @@ And the numbered sections:
 5. Color system and roles
 6. Typography
 7. Signature or logo
-8. Graphic elements and composition
+8. Graphic elements and composition, with a subsection on motion when the identity will be used on screen.
 9. Usage recommendations
 10. Appendices: technical sheet of the system (tokens) and provenance of the typefaces.
 
 The cover, the contents, the introduction and the appendices are fixed. Of the content sections, drop the ones that do not add to a given case. The structure guides; it does not compel.
+
+If a section has to be added once the numbering is already settled and quoted throughout, add it as a subsection of the section it belongs to rather than renumbering everything after it.
 
 ## What the skill does not do
 
