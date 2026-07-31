@@ -32,7 +32,7 @@ Sirve a quien produce trabajo a su nombre y quiere que se vea y suene consistent
 - No te inventa el propósito ni el posicionamiento. Te ayuda a articular lo que ya haces, no a fabricar una identidad que no tienes.
 - No hace identidad corporativa. Es marca de una persona, no de una empresa.
 - No produce fotografía ni ilustración, ni gestiona tus redes o tu plan de contenidos. Es el sistema visual y verbal, no la estrategia de difusión.
-- No produce por sí misma un .docx de Word. Un documento editable es tarea de [`ooxmlkit`](https://github.com/Carlos-Padilla-Bravo/ooxmlkit), una librería aparte; la skill entrega el HTML y su PDF.
+- No produce por sí misma un .docx de Word. La skill entrega el HTML y su PDF; para el editable hay camino con [`ooxmlkit`](https://github.com/Carlos-Padilla-Bravo/ooxmlkit), y está explicado más abajo, con sus dos requisitos.
 - No reemplaza a un diseñador cuando el encargo excede un sistema documentado.
 
 ## 3. Cómo funciona
@@ -101,7 +101,18 @@ Un manual de identidad no es un documento que archivas. Es la fuente única que 
 - **Resolver casos nuevos con criterio.** Cuando aparece algo que el manual no previó, sus decisiones te dicen qué es coherente con tu marca y qué no.
 - **Hacer reconocible tu trabajo con el tiempo.** La consistencia es el activo: piezas hechas en meses distintos se leen como de la misma persona.
 
-## 9. Licencia y estado
+## 9. ¿Y si lo quiero en Word?
+
+Esta skill entrega el manual en HTML, que imprime el PDF paginado formal en cualquier sistema. Si además necesitas un `.docx` editable, el camino existe y es este:
+
+1. Termina tu manual con esta skill. Las decisiones que tomes acá son las que se componen allá.
+2. Pídele a Claude Code que lo componga en Word con [`ooxmlkit`](https://github.com/Carlos-Padilla-Bravo/ooxmlkit), partiendo de su ejemplo trabajado. No hace falta que programes: ese ejemplo es el manual completo de una de las dos personas de acá, y el trabajo es sustituir sus decisiones por las tuyas.
+
+**Antes de partir, dos requisitos que esta skill no pide.** Cerrar el documento exige **Windows con Microsoft Word**, porque el índice y el total de páginas son campos que solo Word resuelve. Y las tipografías tienen que estar instaladas en el equipo, o Word sustituye sin avisar y el manual termina contradiciendo lo que él mismo declara. Si trabajas en macOS o en Linux, el HTML y su PDF son la ruta completa.
+
+`ooxmlkit` no es parte de esta skill ni la usa: son dos cosas separadas a propósito, una decide y la otra compone.
+
+## 10. Licencia y estado
 
 Publicado bajo licencia **MIT**. Copyright (c) 2026 Carlos Padilla Bravo. Puedes usar, copiar y modificar la skill, incluso en trabajo pagado, conservando el aviso de autoría.
 
@@ -110,5 +121,3 @@ Publicado bajo licencia **MIT**. Copyright (c) 2026 Carlos Padilla Bravo. Puedes
 ---
 
 Autor: **Carlos Padilla Bravo**
-
-[`ooxmlkit`](https://github.com/Carlos-Padilla-Bravo/ooxmlkit) es una librería aparte, para desarrolladores que quieren una capa que genere un .docx de Word. Esta skill no la usa ni la incluye: entrega el manual en HTML, que imprime el PDF paginado formal en cualquier sistema. `ooxmlkit` solo importa si necesitas un .docx editable, y pide un equipo que esta skill no pide: cerrar el documento exige Windows y Microsoft Word.

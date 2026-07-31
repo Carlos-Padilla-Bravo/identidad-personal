@@ -51,7 +51,11 @@ it here.
 - **Word/`.docx` is not part of this skill.** It points to
   [`ooxmlkit`](https://github.com/Carlos-Padilla-Bravo/ooxmlkit), a separate
   library in its own repository. Don't absorb it: it needs Windows and Word,
-  which is exactly what the HTML deliverable avoids.
+  which is exactly what the HTML deliverable avoids. What the two repos share is
+  **Ignacia**: her manual is the worked example over there too, so a change to
+  her palette or her families here leaves that example stating values this repo
+  no longer holds. It is the same drift as a card against its manual, across
+  repositories, and nothing enforces it either.
 
 ## Layout
 
