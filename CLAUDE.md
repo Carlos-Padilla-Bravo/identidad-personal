@@ -90,3 +90,13 @@ is not a support channel.
 Before porting a rule from a real manual, check it against the two example manuals
 in `ejemplo/`. A rule that would declare one of them wrong is either not general or
 is worded too strongly.
+
+**The manual is not the only place the lessons come from.** The skills built on
+top of that identity find them too, by producing real pieces: `html-deck-carlos`
+is where the version mappings, the outline for a colour that cannot reach
+contrast, the fixed order that is distribution and not hierarchy, and the rule
+about units all surfaced first. Nothing connects the two repos, so the lesson
+only crosses when somebody goes to look. When that repo has been working and
+this one has not, its `CLAUDE.md` and its recent commits are the place to check:
+they record what was decided and why, which is what tells you whether it
+generalises past Carlos.
