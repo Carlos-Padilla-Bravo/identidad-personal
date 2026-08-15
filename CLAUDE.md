@@ -11,6 +11,8 @@ it here.
 
 ## Working conventions
 
+### The examples
+
 - **The examples are compiled, not hand-edited.** Each of the two people ships a
   manual and a one-page card, four published files in all. Edit the sources in
   `ejemplo/compilar/` and rebuild; the steps are in
@@ -23,6 +25,8 @@ it here.
 - **The index page numbers are written by hand and drift in silence.** Any content
   edit can move the pagination without anything failing. After editing a manual,
   re-check the index against the rebuilt PDF — `COMO-REGENERAR.md` has the check.
+### The scaffolds
+
 - **`assets/plantilla.html` is the mechanical scaffold, not a design.** It carries
   the proven `@page` print CSS and the document structure. Fill its `{{...}}`
   placeholders and `:root` tokens; don't rebuild the print CSS from scratch.
@@ -44,6 +48,8 @@ it here.
   There is no pagination library, and none is needed.
 - **Fonts are OFL, subset to woff2 and embedded as base64.** For IBM Plex
   (Valentina's manual) regenerate with `ejemplo/compilar/subset-plex.py`.
+### What a rule is allowed to be
+
 - **Enforce mechanics, offer taste.** A new rule is only allowed to be binding
   when breaking it produces something measurably wrong: text that fails
   contrast, a value that goes invisible in one version, a page that will not
@@ -53,6 +59,8 @@ it here.
   taste stops producing a system of the person's own.
 - **Verify color contrast by number (WCAG 2.1), never by eye,** for any new
   palette. The example manuals quote real ratios; keep them true if a color changes.
+### Publishing and boundaries
+
 - **Keep both READMEs in step.** `README.md` (English, GitHub's default) and
   `README.es.md` (Spanish) carry the same content; edit them together.
 - **Word/`.docx` is not part of this skill.** It points to
